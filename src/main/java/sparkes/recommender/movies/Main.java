@@ -46,7 +46,7 @@ public class Main implements Serializable {
 
     public void initializeSession() {
         //spark
-        conf = new SparkConf().setAppName("Movie Recommender").setMaster("local");
+        conf = new SparkConf().setAppName("Movie Recommender").setMaster("local[*]");
         sc = new SparkContext(conf);
         jsc = JavaSparkContext.fromSparkContext(sc);
         sparkSession = new SparkSession(sc);
@@ -143,7 +143,7 @@ public class Main implements Serializable {
         return movie;
     }
 
-    private static void initialSetup(Main driver) {
+    private static void initialSetup(Main driver, Recommender recommender_system) {
         driver.importData2Spark();
 
         // create mapping
@@ -156,7 +156,6 @@ public class Main implements Serializable {
         driver.dataPreProcessing();
 
 
-        final Recommender recommender_system = new Recommender();
         // prepare data for Als algorithm
         JavaRDD<Rating> als_data = recommender_system.createAlsData(driver.ratings_filter);
 
@@ -182,14 +181,19 @@ public class Main implements Serializable {
         driver.save2ES("i_user", "users", driver.user_features);
     }
 
+    public void getMoviesSimilarToGivenMovie(int movieId, int recommedationCount, String index) {
+        Jav[]
+    }
+
     public static void main(String arg[]) throws IOException {
         // initialize spark session
         Main driver = new Main();
+        final Recommender recommender_system = new Recommender();
         driver.initializeSession();
 
         final boolean isFirstRun = false;
         if (isFirstRun) {
-            Main.initialSetup(driver);
+            Main.initialSetup(driver, recommender_system);
         }
 
 
@@ -201,9 +205,13 @@ public class Main implements Serializable {
 
 
         JavaRDD<Map<String, Object>> movie_query = driver.getMovieFromES(movieId, es_index, es_index_mapping);
+        boolean factorsAvailable = movie_query.first().containsKey("feature");
         //System.out.println(movie_query.first().keySet());
-        // recommender_system.getMoviesSimilarToGivenMovie(movieId, number_of_recommendation, index);
-
+        if (!factorsAvailable) {
+            System.out.println("Cannot find similar movies..");
+        } else {
+            driver.getMoviesSimilarToGivenMovie(movieId, number_of_recommendation, es_index);
+        }
 
         //close elasticsearch client
         driver.closeESClientConnection(client);

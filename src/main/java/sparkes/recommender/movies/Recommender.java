@@ -42,11 +42,9 @@ public class Recommender implements Serializable {
         return alsModel;
     }
 
-    private void getSimilarMovies() {
+/*    private void getSimilarMovies() {
 
-    }
+    }*/
 
-    public void getMoviesSimilarToGivenMovie(int movieId, int recommedationCount, String index) {
 
-    }
 }
