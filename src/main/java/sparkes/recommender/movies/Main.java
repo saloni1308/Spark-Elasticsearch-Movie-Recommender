@@ -8,34 +8,31 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.mllib.recommendation.ALS;
-import org.apache.spark.mllib.recommendation.MatrixFactorizationModel;
 import org.apache.spark.mllib.recommendation.Rating;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.Row;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.spark.rdd.api.java.JavaEsSpark;
-import org.json.simple.JSONObject;
 import scala.Tuple2;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.Instant;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
 
 public class Main implements Serializable {
-    private final static String RESOURCES_PATH = "C:\\Users\\RajatKhandelwal\\IdeaProjects\\sparkes.recommender.movies\\resources";
+    private final static String RESOURCES_PATH = "C:\\Users\\RajatKhandelwal\\IdeaProjects\\sparkes.recommender.movies\\resources\\";
     static SparkConf conf;
     static JavaSparkContext jsc;
     static SparkSession sparkSession;
     static SparkContext sc;
-    private final String DATA_SET_PATH = "C:\\Users\\RajatKhandelwal\\IdeaProjects\\sparkes.recommender.movies\\src\\datasets\\ml-latest-small";
-    ALS als;
-    MatrixFactorizationModel model;
+    static RestClient client;
+    private final String DATA_SET_PATH = "C:\\Users\\RajatKhandelwal\\IdeaProjects\\sparkes.recommender.movies\\resources\\datasets\\ml-latest-small\\";
+
+
     Dataset<Row> movies;
     Dataset<MovieRating> ratings;
     Dataset<Row> tags;
@@ -46,53 +43,16 @@ public class Main implements Serializable {
     JavaRDD<AlsModel> features_vector;
     JavaRDD<AlsModel> user_features;
 
-    public static void main(String arg[]) {
-        // initialize spak session
-        Main driver = new Main();
-        driver.initializeSession();
-        driver.importData2Spark();
-
-        // create mapping
-        driver.createIndex("i_movies", "movies_mapping.json");
-        driver.createIndex("i_rating", "rating_mapping.json");
-        driver.createIndex("i_user", "users_mapping.json");
-
-
-        // remove null values
-        driver.dataPreProcessing();
-
-        // prepare data for Als algorithm
-        JavaRDD<Rating> als_data = driver.createAlsData();
-
-        // train model using ALS algorithm
-        driver.trainModelByAls(als_data);
-
-        // fetch item features from the model
-        JavaRDD<Tuple2<Integer, double[]>> factors_ratings = (JavaRDD<Tuple2<Integer, double[]>>) (JavaRDD<?>) driver.model.productFeatures().toJavaRDD();
-
-        JavaRDD<Tuple2<Integer, double[]>> users_feature = (JavaRDD<Tuple2<Integer, double[]>>) (JavaRDD<?>) driver.model.userFeatures().toJavaRDD();
-
-        // transform item feature to (id | feature | version | timestamp) format
-        driver.features_vector = factors_ratings.map(objectTuple2 -> driver.getModelVector(objectTuple2, driver.model.formatVersion()));
-
-        driver.user_features = users_feature.map(objectTuple -> driver.getModelVector(objectTuple, driver.model.formatVersion()));
-
-        // combine movie data with link and features
-        driver.transformMovieData();
-
-        // save data to ES
-        driver.save2ES("i_movies", "movies", driver.movieJoin.toJavaRDD());
-        driver.save2ES("i_rating", "ratings", driver.ratings_filter.toJavaRDD());
-        driver.save2ES("i_user", "users", driver.user_features);
-
-        sparkSession.close();
-    }
 
     public void initializeSession() {
+        //spark
         conf = new SparkConf().setAppName("Movie Recommender").setMaster("local");
         sc = new SparkContext(conf);
         jsc = JavaSparkContext.fromSparkContext(sc);
         sparkSession = new SparkSession(sc);
+
+        //elasticsearch
+        client = RestClient.builder(new HttpHost("localhost", 9200, "http")).build();
     }
 
     private void importData2Spark() {
@@ -131,13 +91,11 @@ public class Main implements Serializable {
         String indexMapping = readJson(indexMappingJson);
         if (indexMapping != null) {
 
-            RestClient client = RestClient.builder(new HttpHost("localhost", 9200, "http")).build();
 
             HttpEntity entity = new NStringEntity(indexMapping, ContentType.APPLICATION_JSON);
 
             Response response = createIndexES(client, indexName, entity);
 
-            closeClientConnection(client);
 
         }
     }
@@ -161,7 +119,7 @@ public class Main implements Serializable {
         return null;
     }
 
-    private void closeClientConnection(RestClient client) {
+    private void closeESClientConnection(RestClient client) {
         try {
             client.close();
         } catch (IOException e) {
@@ -173,69 +131,85 @@ public class Main implements Serializable {
     private <T> void save2ES(final String indexName, final String documentType, final JavaRDD<T> data) {
         // inject data into elasticsearch
         JavaEsSpark.saveToEs(data, "/" + indexName + "/" + documentType);
-
     }
 
-    private JavaRDD<Rating> createAlsData() {
-        return ratings_filter.toJavaRDD().map(r -> {
-            return new Rating(Integer.parseInt(r.getUserId()), Integer.parseInt(r.getMovieId()), Float.parseFloat(r.getRating()));
-        });
+    private JavaRDD<Map<String, Object>> getMovieFromES(final int movieId, final String ESindexName, final String ESindexmapping) throws IOException {
+        // fetching data from elasticsearch
+        //  final JavaPairRDD movie = JavaEsSpark.esRDD(jsc, indexName+"/"+mapping+"/?q=movieId="+movieId);
+        final JavaRDD<Map<String, Object>> movie = JavaEsSpark.esRDD(jsc, "/" + ESindexName + "/" + ESindexmapping, "?q=movieId=" + movieId).values();
+
+        //  Response response = client.performRequest("GET", indexName, );
+
+        return movie;
     }
 
-    private void trainModelByAls(JavaRDD<Rating> als_data) {
-        als = new ALS();
-        als.setLambda(0.1);
-        als.setAlpha(0.1);
-        als.setIterations(10);
-        als.setRank(10);
-        als.setSeed(42);
-        model = als.run(als_data);
+    private static void initialSetup(Main driver) {
+        driver.importData2Spark();
+
+        // create mapping
+        driver.createIndex("i_movies", "movies_mapping.json");
+        driver.createIndex("i_rating", "rating_mapping.json");
+        driver.createIndex("i_user", "users_mapping.json");
+
+
+        // remove null values
+        driver.dataPreProcessing();
+
+
+        final Recommender recommender_system = new Recommender();
+        // prepare data for Als algorithm
+        JavaRDD<Rating> als_data = recommender_system.createAlsData(driver.ratings_filter);
+
+        // train model using ALS algorithm
+        recommender_system.trainModelByAls(als_data);
+
+        // fetch item features from the model
+        JavaRDD<Tuple2<Integer, double[]>> factors_ratings = (JavaRDD<Tuple2<Integer, double[]>>) (JavaRDD<?>) recommender_system.model.productFeatures().toJavaRDD();
+
+        JavaRDD<Tuple2<Integer, double[]>> users_feature = (JavaRDD<Tuple2<Integer, double[]>>) (JavaRDD<?>) recommender_system.model.userFeatures().toJavaRDD();
+
+        // transform item feature to (id | feature | version | timestamp) format
+        driver.features_vector = factors_ratings.map(objectTuple2 -> recommender_system.getModelVector(objectTuple2, recommender_system.model.formatVersion()));
+
+        driver.user_features = users_feature.map(objectTuple -> recommender_system.getModelVector(objectTuple, recommender_system.model.formatVersion()));
+
+        // combine movie data with link and features
+        driver.transformMovieData();
+
+        // save data to ES
+        driver.save2ES("i_movies", "movies", driver.movieJoin.toJavaRDD());
+        driver.save2ES("i_rating", "ratings", driver.ratings_filter.toJavaRDD());
+        driver.save2ES("i_user", "users", driver.user_features);
     }
 
-    private AlsModel getModelVector(Tuple2<Integer, double[]> model, String version) {
-        AlsModel alsModel = new AlsModel();
-        alsModel.setVersion(version);
-        alsModel.setTimestamp(Instant.now().getEpochSecond());
-        alsModel.setMovieId(model._1().toString());
-        alsModel.setFeatures(Arrays.toString(model._2()).replace(",", "|").replace("[", "").replace("]", ""));
-        return alsModel;
-    }
+    public static void main(String arg[]) throws IOException {
+        // initialize spark session
+        Main driver = new Main();
+        driver.initializeSession();
 
-    private String mergeJson(JSONObject a, JSONObject b) {
-
-        return "";
-    }
-
-    private String func_query(String q) {
-
-        JSONObject query_json = new JSONObject();
+        final boolean isFirstRun = false;
+        if (isFirstRun) {
+            Main.initialSetup(driver);
+        }
 
 
-        JSONObject function_score_json = new JSONObject();
+        // get similar movies
+        final int movieId = 2628;
+        final int number_of_recommendation = 10;
+        final String es_index = "i_movies";
+        final String es_index_mapping = "movies";
 
 
-        JSONObject sub_query_json = new JSONObject();
-        JSONObject sub_query_string_json = new JSONObject();
-
-        JSONObject script_score_json = new JSONObject();
-
-        JSONObject script_json = new JSONObject();
-
-        sub_query_string_json.put("query_string", new JSONObject().put("query", q));
-        sub_query_json.put("query", sub_query_string_json);
-        function_score_json.put("function_score", sub_query_json);
-        query_json.put("query", function_score_json);
+        JavaRDD<Map<String, Object>> movie_query = driver.getMovieFromES(movieId, es_index, es_index_mapping);
+        //System.out.println(movie_query.first().keySet());
+        // recommender_system.getMoviesSimilarToGivenMovie(movieId, number_of_recommendation, index);
 
 
-        System.out.println(query_json.toJSONString());
+        //close elasticsearch client
+        driver.closeESClientConnection(client);
+        //close spark
+        sparkSession.close();
 
-
-        JSONObject boostmode_json = new JSONObject();
-        boostmode_json.put("boost_mode", "replace");
-
-        //	query_json.put("query", new JSONObject("function_score", new JSONObject("query", new JSONObject("query_string", new JSONObject("query",q )))));
-
-        return "";
     }
 
 
