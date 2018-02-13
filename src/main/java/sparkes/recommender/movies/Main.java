@@ -182,7 +182,7 @@ public class Main implements Serializable {
     }
 
     public void getMoviesSimilarToGivenMovie(int movieId, int recommedationCount, String index) {
-        Jav[]
+
     }
 
     public static void main(String arg[]) throws IOException {
