@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.model.keyword;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.omertron.themoviedbapi.model.AbstractIdName;
+
 import java.io.Serializable;
 
 /**

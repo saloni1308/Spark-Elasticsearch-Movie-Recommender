@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.results;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.change.ChangeKeyItem;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -22,14 +22,11 @@ package com.omertron.themoviedbapi.methods;
 import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.enumeration.ExternalSource;
 import com.omertron.themoviedbapi.model.FindResults;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Find Methods
@@ -50,7 +47,7 @@ public class TmdbFind extends AbstractMethod {
 
     /**
      * You con use this method to find movies, tv series or persons using external ids.
-     *
+     * <p>
      * Supported query ids are
      * <ul>
      * <li>Movies: imdb_id</li>
@@ -60,12 +57,12 @@ public class TmdbFind extends AbstractMethod {
      * <li>TV Episodes: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_idimdb_id, freebase_mid, freebase_id, tvrage_id,
      * tvdb_id.
      * </ul>
-     *
+     * <p>
      * For details see http://docs.themoviedb.apiary.io/#find
      *
-     * @param id the external id
+     * @param id             the external id
      * @param externalSource one of {@link ExternalSource}.
-     * @param language the language
+     * @param language       the language
      * @return
      * @throws MovieDbException
      */

@@ -36,7 +36,7 @@ public final class ResponseTools {
         return isOK(apiException.getResponseCode());
     }
 
-    
+
     public static boolean isOK(final int statusCode) {
         return statusCode == 200;
     }

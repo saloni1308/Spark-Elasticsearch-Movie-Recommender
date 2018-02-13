@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.model.credits;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.enumeration.MediaType;
+
 import java.io.Serializable;
 
 /**

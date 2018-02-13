@@ -19,12 +19,13 @@
  */
 package com.omertron.themoviedbapi.model.movie;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.io.Serializable;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.io.Serializable;
 
 /**
  * @author stuart.boston

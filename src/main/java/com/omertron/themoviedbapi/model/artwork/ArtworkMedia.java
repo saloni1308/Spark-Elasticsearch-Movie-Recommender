@@ -28,12 +28,12 @@ import com.omertron.themoviedbapi.model.media.MediaBasic;
 import com.omertron.themoviedbapi.model.movie.MovieBasic;
 import com.omertron.themoviedbapi.model.tv.TVBasic;
 import com.omertron.themoviedbapi.model.tv.TVEpisodeBasic;
-import java.io.Serializable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.io.Serializable;
+
 /**
- *
  * @author Stuart
  */
 public class ArtworkMedia extends Artwork implements Serializable {
@@ -48,9 +48,9 @@ public class ArtworkMedia extends Artwork implements Serializable {
             defaultImpl = MediaBasic.class
     )
     @JsonSubTypes({
-        @JsonSubTypes.Type(value = MovieBasic.class, name = "movie"),
-        @JsonSubTypes.Type(value = TVBasic.class, name = "tv"),
-        @JsonSubTypes.Type(value = TVEpisodeBasic.class, name = "episode")
+            @JsonSubTypes.Type(value = MovieBasic.class, name = "movie"),
+            @JsonSubTypes.Type(value = TVBasic.class, name = "tv"),
+            @JsonSubTypes.Type(value = TVEpisodeBasic.class, name = "episode")
     })
     @JsonProperty("media")
     private MediaBasic media;
@@ -59,13 +59,13 @@ public class ArtworkMedia extends Artwork implements Serializable {
         return mediaType;
     }
 
-    public void setMediaType(MediaType mediaType) {
-        this.mediaType = mediaType;
-    }
-
     @JsonSetter("media_type")
     public void setMediaType(String mediaType) {
         this.mediaType = MediaType.fromString(mediaType);
+    }
+
+    public void setMediaType(MediaType mediaType) {
+        this.mediaType = mediaType;
     }
 
     public MediaBasic getMedia() {

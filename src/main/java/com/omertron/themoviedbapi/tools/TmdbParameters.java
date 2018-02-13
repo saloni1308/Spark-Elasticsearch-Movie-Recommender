@@ -19,12 +19,13 @@
  */
 package com.omertron.themoviedbapi.tools;
 
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Parameters for the TMDB API
@@ -54,7 +55,7 @@ public class TmdbParameters {
     /**
      * Add an array parameter to the collection
      *
-     * @param key Parameter to add
+     * @param key   Parameter to add
      * @param value The array value to use (will be converted into a comma separated list)
      */
     public void add(final Param key, final String[] value) {
@@ -66,7 +67,7 @@ public class TmdbParameters {
     /**
      * Add a string parameter to the collection
      *
-     * @param key Parameter to add
+     * @param key   Parameter to add
      * @param value The value to add (will be checked to ensure it's valid)
      */
     public void add(final Param key, final String value) {
@@ -78,7 +79,7 @@ public class TmdbParameters {
     /**
      * Add an integer parameter to the collection
      *
-     * @param key Parameter to add
+     * @param key   Parameter to add
      * @param value The value to add (will be checked to ensure greater than zero)
      */
     public void add(final Param key, final Integer value) {
@@ -90,7 +91,7 @@ public class TmdbParameters {
     /**
      * Add a float parameter to the collection
      *
-     * @param key Parameter to add
+     * @param key   Parameter to add
      * @param value The value to add (will be checked to ensure greater than zero)
      */
     public void add(final Param key, final Float value) {
@@ -102,7 +103,7 @@ public class TmdbParameters {
     /**
      * Add a boolean parameter to the collection
      *
-     * @param key Parameter to add
+     * @param key   Parameter to add
      * @param value The value to add (will be checked to ensure greater than zero)
      */
     public void add(final Param key, final Boolean value) {

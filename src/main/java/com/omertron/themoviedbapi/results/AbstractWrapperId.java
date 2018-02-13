@@ -19,8 +19,8 @@
  */
 package com.omertron.themoviedbapi.results;
 
-import com.omertron.themoviedbapi.interfaces.Identification;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.themoviedbapi.interfaces.Identification;
 
 /**
  * Base class for the wrappers

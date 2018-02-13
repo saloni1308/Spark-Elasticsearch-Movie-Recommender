@@ -19,11 +19,12 @@
  */
 package com.omertron.themoviedbapi.model.media;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.io.Serializable;
 
 /**
  * Video specific information
@@ -55,60 +56,60 @@ public class Video extends AbstractJsonMapping implements Serializable {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public String getSite() {
-        return site;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public void setKey(String key) {
         this.key = key;
     }
 
+    public String getSite() {
+        return site;
+    }
+
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public void setCountry(String country) {

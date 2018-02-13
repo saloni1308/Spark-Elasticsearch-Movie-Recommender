@@ -20,7 +20,6 @@
 package com.omertron.themoviedbapi.methods;
 
 import com.omertron.themoviedbapi.MovieDbException;
-import static com.omertron.themoviedbapi.methods.AbstractMethod.MAPPER;
 import com.omertron.themoviedbapi.model.artwork.Artwork;
 import com.omertron.themoviedbapi.model.change.ChangeKeyItem;
 import com.omertron.themoviedbapi.model.media.MediaCreditList;
@@ -29,17 +28,13 @@ import com.omertron.themoviedbapi.model.media.Video;
 import com.omertron.themoviedbapi.model.person.ExternalID;
 import com.omertron.themoviedbapi.model.tv.TVSeasonInfo;
 import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
 import com.omertron.themoviedbapi.results.WrapperImages;
 import com.omertron.themoviedbapi.results.WrapperVideos;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the TV Methods
@@ -100,7 +95,7 @@ public class TmdbSeasons extends AbstractMethod {
 
     /**
      * This method lets users get the status of whether or not the TV episodes of a season have been rated.
-     *
+     * <p>
      * A valid session id is required.
      *
      * @param tvID

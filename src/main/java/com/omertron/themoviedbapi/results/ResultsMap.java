@@ -24,13 +24,13 @@ import java.util.Map;
 
 /**
  * Map of the results from TheMovieDb
- *
+ * <p>
  * If the original request contains, or could contain, a page of results, this wrapper is returned to indicate what page was
  * returned and how many are available
  *
- * @author Stuart
  * @param <K>
  * @param <V>
+ * @author Stuart
  */
 public final class ResultsMap<K, V> extends AbstractWrapperIdPages {
 
@@ -56,6 +56,10 @@ public final class ResultsMap<K, V> extends AbstractWrapperIdPages {
         return results;
     }
 
+    public void setResults(Map<K, V> results) {
+        this.results = results;
+    }
+
     public boolean containsKey(K key) {
         return results.containsKey(key);
     }
@@ -66,10 +70,6 @@ public final class ResultsMap<K, V> extends AbstractWrapperIdPages {
 
     public void put(K key, V value) {
         this.results.put(key, value);
-    }
-
-    public void setResults(Map<K, V> results) {
-        this.results = results;
     }
 
     @Override

@@ -22,8 +22,9 @@ package com.omertron.themoviedbapi.model.media;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.omertron.themoviedbapi.enumeration.MediaType;
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.omertron.themoviedbapi.interfaces.Identification;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 
 /**
@@ -63,13 +64,13 @@ public class MediaBasic extends AbstractJsonMapping implements Serializable, Ide
         return mediaType;
     }
 
+    public void setMediaType(MediaType mediaType) {
+        this.mediaType = mediaType;
+    }
+
     @JsonSetter("media_type")
     public void setMediaType(String mediaType) {
         this.mediaType = MediaType.fromString(mediaType);
-    }
-
-    public void setMediaType(MediaType mediaType) {
-        this.mediaType = mediaType;
     }
 
     public String getBackdropPath() {

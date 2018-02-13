@@ -19,16 +19,17 @@
  */
 package com.omertron.themoviedbapi.model.person;
 
-import com.omertron.themoviedbapi.model.credits.CreditBasic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.omertron.themoviedbapi.interfaces.Identification;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+import com.omertron.themoviedbapi.model.credits.CreditBasic;
+
 import java.util.List;
 
 /**
- * @author stuart.boston
  * @param <T>
+ * @author stuart.boston
  */
 public class PersonCreditList<T extends CreditBasic> extends AbstractJsonMapping implements Identification {
 

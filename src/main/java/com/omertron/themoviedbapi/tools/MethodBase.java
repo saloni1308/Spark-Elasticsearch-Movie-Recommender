@@ -19,8 +19,9 @@
  */
 package com.omertron.themoviedbapi.tools;
 
-import java.util.EnumSet;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.EnumSet;
 
 public enum MethodBase {
 
@@ -55,15 +56,6 @@ public enum MethodBase {
     }
 
     /**
-     * Get the URL parameter to use
-     *
-     * @return value
-     */
-    public String getValue() {
-        return this.value;
-    }
-
-    /**
      * Convert a string into an Enum type
      *
      * @param value the string representation of the enum
@@ -80,5 +72,14 @@ public enum MethodBase {
 
         // We've not found the type!
         throw new IllegalArgumentException("Method '" + value + "' not recognised");
+    }
+
+    /**
+     * Get the URL parameter to use
+     *
+     * @return value
+     */
+    public String getValue() {
+        return this.value;
     }
 }

@@ -20,6 +20,7 @@
 package com.omertron.themoviedbapi.model;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import java.io.Serializable;
 
 /**

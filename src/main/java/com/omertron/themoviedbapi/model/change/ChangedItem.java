@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.model.change;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 
 public class ChangedItem extends AbstractJsonMapping implements Serializable {

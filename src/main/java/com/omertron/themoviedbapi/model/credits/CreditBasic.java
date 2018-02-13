@@ -26,6 +26,7 @@ import com.omertron.themoviedbapi.enumeration.CreditType;
 import com.omertron.themoviedbapi.enumeration.MediaType;
 import com.omertron.themoviedbapi.interfaces.Identification;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 
 /**
@@ -66,13 +67,13 @@ public class CreditBasic extends AbstractJsonMapping implements Serializable, Id
         return mediaType;
     }
 
+    public void setMediaType(MediaType mediaType) {
+        this.mediaType = mediaType;
+    }
+
     @JsonSetter("media_type")
     public void setMediaType(String mediaType) {
         this.mediaType = MediaType.fromString(mediaType);
-    }
-
-    public void setMediaType(MediaType mediaType) {
-        this.mediaType = mediaType;
     }
 
     public String getCreditId() {

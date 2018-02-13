@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.model.list;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
@@ -28,8 +29,8 @@ import java.util.List;
 /**
  * Wrapper for the ListItem function
  *
- * @author stuart.boston
  * @param <T> Type of list
+ * @author stuart.boston
  */
 public class ListItem<T> extends AbstractJsonMapping implements Serializable {
 
@@ -62,84 +63,84 @@ public class ListItem<T> extends AbstractJsonMapping implements Serializable {
         return id;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getFavoriteCount() {
-        return favoriteCount;
-    }
-
-    public List<T> getItems() {
-        return items;
-    }
-
-    public int getItemCount() {
-        return itemCount;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPosterPath() {
-        return posterPath;
-    }
-
-    public String getStatusCode() {
-        return statusCode;
-    }
-
-    public String getStatusMessage() {
-        return statusMessage;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getFavoriteCount() {
+        return favoriteCount;
     }
 
     public void setFavoriteCount(int favoriteCount) {
         this.favoriteCount = favoriteCount;
     }
 
+    public List<T> getItems() {
+        return items;
+    }
+
     public void setItems(List<T> items) {
         this.items = items;
+    }
+
+    public int getItemCount() {
+        return itemCount;
     }
 
     public void setItemCount(int itemCount) {
         this.itemCount = itemCount;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getPosterPath() {
+        return posterPath;
+    }
+
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
     }
 
+    public String getStatusCode() {
+        return statusCode;
+    }
+
     public void setStatusCode(String statusCode) {
         this.statusCode = statusCode;
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
     }
 
     public void setStatusMessage(String statusMessage) {

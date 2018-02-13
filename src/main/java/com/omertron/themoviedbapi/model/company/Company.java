@@ -20,9 +20,11 @@
 package com.omertron.themoviedbapi.model.company;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.omertron.themoviedbapi.interfaces.Identification;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
+
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 /**
@@ -54,53 +56,53 @@ public class Company extends AbstractJsonMapping implements Serializable, Identi
         return id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getHeadquarters() {
-        return headquarters;
-    }
-
-    public String getHomepage() {
-        return homepage;
-    }
-
-    public String getLogoPath() {
-        return logoPath;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Company getParentCompany() {
-        return parentCompany;
-    }
-
     @Override
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public String getHeadquarters() {
+        return headquarters;
+    }
+
     public void setHeadquarters(String headquarters) {
         this.headquarters = headquarters;
+    }
+
+    public String getHomepage() {
+        return homepage;
     }
 
     public void setHomepage(String homepage) {
         this.homepage = homepage;
     }
 
+    public String getLogoPath() {
+        return logoPath;
+    }
+
     public void setLogoPath(String logoPath) {
         this.logoPath = logoPath;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Company getParentCompany() {
+        return parentCompany;
     }
 
     public void setParentCompany(Company parentCompany) {

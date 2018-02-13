@@ -22,6 +22,7 @@ package com.omertron.themoviedbapi.model.tv;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.enumeration.MediaType;
 import com.omertron.themoviedbapi.model.media.MediaBasic;
+
 import java.io.Serializable;
 import java.util.List;
 

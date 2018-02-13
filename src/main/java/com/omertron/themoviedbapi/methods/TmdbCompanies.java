@@ -23,16 +23,12 @@ import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.model.company.Company;
 import com.omertron.themoviedbapi.model.movie.MovieBasic;
 import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Company Methods
@@ -74,7 +70,7 @@ public class TmdbCompanies extends AbstractMethod {
 
     /**
      * This method is used to retrieve the movies associated with a company.
-     *
+     * <p>
      * These movies are returned in order of most recently released to oldest. The default response will return 20 movies per page.
      *
      * @param companyId

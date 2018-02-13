@@ -19,13 +19,6 @@
  */
 package org.yamj.api.common.http;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.net.SocketTimeoutException;
-import java.nio.charset.Charset;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
@@ -35,6 +28,10 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.net.SocketTimeoutException;
+import java.nio.charset.Charset;
 
 /**
  * Digested Response Reader class to process HTTP requests
@@ -131,9 +128,9 @@ public class DigestedResponseReader {
      */
     private static String getContent(HttpResponse response, Charset charset) throws IOException {
         try (StringWriter content = new StringWriter(SW_BUFFER_10K);
-                InputStream is = response.getEntity().getContent();
-                InputStreamReader isr = new InputStreamReader(is, charset == null ? Charset.defaultCharset() : charset);
-                BufferedReader br = new BufferedReader(isr)) {
+             InputStream is = response.getEntity().getContent();
+             InputStreamReader isr = new InputStreamReader(is, charset == null ? Charset.defaultCharset() : charset);
+             BufferedReader br = new BufferedReader(isr)) {
             String line = br.readLine();
             while (line != null) {
                 content.write(line);

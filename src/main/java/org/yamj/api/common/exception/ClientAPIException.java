@@ -19,8 +19,9 @@
  */
 package org.yamj.api.common.exception;
 
-import javax.xml.ws.WebServiceException;
 import org.yamj.api.common.http.DigestedResponse;
+
+import javax.xml.ws.WebServiceException;
 
 public class ClientAPIException extends WebServiceException {
 

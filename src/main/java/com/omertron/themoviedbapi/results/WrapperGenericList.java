@@ -21,13 +21,14 @@ package com.omertron.themoviedbapi.results;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
  * Generic wrapper for result lists
  *
- * @author Stuart
  * @param <T>
+ * @author Stuart
  */
 public class WrapperGenericList<T> extends AbstractWrapperAll {
 

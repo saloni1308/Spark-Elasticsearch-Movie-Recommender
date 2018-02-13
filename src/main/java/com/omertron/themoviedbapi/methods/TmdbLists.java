@@ -21,23 +21,17 @@ package com.omertron.themoviedbapi.methods;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.omertron.themoviedbapi.MovieDbException;
-import com.omertron.themoviedbapi.model.list.ListStatusCode;
 import com.omertron.themoviedbapi.model.StatusCode;
 import com.omertron.themoviedbapi.model.list.ListItem;
 import com.omertron.themoviedbapi.model.list.ListItemStatus;
+import com.omertron.themoviedbapi.model.list.ListStatusCode;
 import com.omertron.themoviedbapi.model.movie.MovieInfo;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.PostBody;
-import com.omertron.themoviedbapi.tools.PostTools;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
-import java.io.IOException;
-import java.net.URL;
+import com.omertron.themoviedbapi.tools.*;
 import org.apache.commons.lang3.StringUtils;
 import org.yamj.api.common.exception.ApiExceptionType;
+
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Class to hold the List Methods
@@ -154,7 +148,7 @@ public class TmdbLists extends AbstractMethod {
 
     /**
      * Modify a list
-     *
+     * <p>
      * This can be used to add or remove an item from the list
      *
      * @param sessionId
@@ -185,7 +179,7 @@ public class TmdbLists extends AbstractMethod {
 
     /**
      * This method lets users add new items to a list that they created.
-     *
+     * <p>
      * A valid session id is required.
      *
      * @param sessionId
@@ -200,7 +194,7 @@ public class TmdbLists extends AbstractMethod {
 
     /**
      * This method lets users delete items from a list that they created.
-     *
+     * <p>
      * A valid session id is required.
      *
      * @param sessionId
@@ -215,9 +209,9 @@ public class TmdbLists extends AbstractMethod {
 
     /**
      * Clear all of the items within a list.
-     *
+     * <p>
      * This is a irreversible action and should be treated with caution.
-     *
+     * <p>
      * A valid session id is required. A call without confirm=true will return status code 29.
      *
      * @param sessionId

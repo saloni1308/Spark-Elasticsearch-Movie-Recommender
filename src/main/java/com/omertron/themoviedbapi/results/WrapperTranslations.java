@@ -21,10 +21,10 @@ package com.omertron.themoviedbapi.results;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.media.Translation;
+
 import java.util.List;
 
 /**
- *
  * @author Stuart
  */
 public class WrapperTranslations extends AbstractWrapperId {
@@ -32,11 +32,11 @@ public class WrapperTranslations extends AbstractWrapperId {
     @JsonProperty("translations")
     private List<Translation> translations;
 
-    public void setTranslations(List<Translation> translations) {
-        this.translations = translations;
-    }
-
     public List<Translation> getTranslations() {
         return translations;
+    }
+
+    public void setTranslations(List<Translation> translations) {
+        this.translations = translations;
     }
 }

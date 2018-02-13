@@ -19,9 +19,10 @@
  */
 package com.omertron.themoviedbapi;
 
-import java.net.URL;
 import org.yamj.api.common.exception.ApiException;
 import org.yamj.api.common.exception.ApiExceptionType;
+
+import java.net.URL;
 
 public class MovieDbException extends ApiException {
 

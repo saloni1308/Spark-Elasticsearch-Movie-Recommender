@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.results;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.Genre;
+
 import java.util.List;
 
 /**

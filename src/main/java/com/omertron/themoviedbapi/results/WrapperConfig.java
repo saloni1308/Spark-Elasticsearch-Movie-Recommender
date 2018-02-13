@@ -21,11 +21,11 @@ package com.omertron.themoviedbapi.results;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.config.Configuration;
+
 import java.util.Collections;
 import java.util.List;
 
 /**
- *
  * @author Stuart
  */
 public class WrapperConfig extends AbstractWrapperBase {

@@ -21,10 +21,10 @@ package com.omertron.themoviedbapi.results;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.keyword.Keyword;
+
 import java.util.List;
 
 /**
- *
  * @author Stuart
  */
 public class WrapperMovieKeywords extends AbstractWrapperId {

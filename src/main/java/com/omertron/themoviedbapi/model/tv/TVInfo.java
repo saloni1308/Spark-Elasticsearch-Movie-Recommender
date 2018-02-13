@@ -40,21 +40,18 @@ import com.omertron.themoviedbapi.results.WrapperChanges;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
 import com.omertron.themoviedbapi.results.WrapperImages;
 import com.omertron.themoviedbapi.results.WrapperTranslations;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
- *
  * @author Stuart
  */
 public class TVInfo extends TVBasic implements Serializable, AppendToResponse<TVMethod> {
 
     private static final long serialVersionUID = 100L;
-
+    // AppendToResponse
+    private final Set<TVMethod> methods = EnumSet.noneOf(TVMethod.class);
     @JsonProperty("created_by")
     private List<PersonBasic> createdBy;
     @JsonProperty("episode_run_time")
@@ -83,8 +80,6 @@ public class TVInfo extends TVBasic implements Serializable, AppendToResponse<TV
     private String status;
     @JsonProperty("type")
     private String type;
-    // AppendToResponse
-    private final Set<TVMethod> methods = EnumSet.noneOf(TVMethod.class);
     // AppendToResponse Properties
     private List<AlternativeTitle> alternativeTitles = Collections.emptyList();
     private List<ChangeKeyItem> changes = Collections.emptyList();
@@ -232,11 +227,20 @@ public class TVInfo extends TVBasic implements Serializable, AppendToResponse<TV
         return methods.contains(method);
     }
 
+    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Getters">
+    public List<AlternativeTitle> getAlternativeTitles() {
+        return alternativeTitles;
+    }
+
     //<editor-fold defaultstate="collapsed" desc="AppendToResponse Setters">
     @JsonSetter("alternative_titles")
     public void setAlternativeTitles(WrapperGenericList<AlternativeTitle> alternativeTitles) {
         this.alternativeTitles = alternativeTitles.getResults();
         addMethod(TVMethod.ALTERNATIVE_TITLES);
+    }
+
+    public List<ChangeKeyItem> getChanges() {
+        return changes;
     }
 
     @JsonSetter("changes")
@@ -245,10 +249,18 @@ public class TVInfo extends TVBasic implements Serializable, AppendToResponse<TV
         addMethod(TVMethod.CHANGES);
     }
 
+    public List<ContentRating> getContentRatings() {
+        return contentRatings;
+    }
+
     @JsonSetter("content_ratings")
     public void setContentRatings(WrapperGenericList<ContentRating> contentRatings) {
         this.contentRatings = contentRatings.getResults();
         addMethod(TVMethod.CONTENT_RATINGS);
+    }
+
+    public MediaCreditList getCredits() {
+        return credits;
     }
 
     @JsonSetter("credits")
@@ -257,10 +269,19 @@ public class TVInfo extends TVBasic implements Serializable, AppendToResponse<TV
         addMethod(TVMethod.CREDITS);
     }
 
+    public ExternalID getExternalIDs() {
+        return externalIDs;
+    }
+
     @JsonSetter("external_ids")
     public void setExternalIDs(ExternalID externalIDs) {
         this.externalIDs = externalIDs;
         addMethod(TVMethod.EXTERNAL_IDS);
+    }
+    //</editor-fold>
+
+    public List<Artwork> getImages() {
+        return images;
     }
 
     @JsonSetter("images")
@@ -269,10 +290,18 @@ public class TVInfo extends TVBasic implements Serializable, AppendToResponse<TV
         addMethod(TVMethod.IMAGES);
     }
 
+    public List<Keyword> getKeywords() {
+        return keywords;
+    }
+
     @JsonSetter("keywords")
     public void setKeywords(WrapperGenericList<Keyword> keywords) {
         this.keywords = keywords.getResults();
         addMethod(TVMethod.KEYWORDS);
+    }
+
+    public List<Translation> getTranslations() {
+        return translations;
     }
 
     @JsonSetter("translations")
@@ -281,58 +310,24 @@ public class TVInfo extends TVBasic implements Serializable, AppendToResponse<TV
         addMethod(TVMethod.TRANSLATIONS);
     }
 
+    public List<TVInfo> getSimilarTV() {
+        return similarTV;
+    }
+
     @JsonSetter("similar")
     public void setSimilarTV(WrapperGenericList<TVInfo> similarTV) {
         this.similarTV = similarTV.getResults();
         addMethod(TVMethod.SIMILAR);
     }
 
+    public List<Video> getVideos() {
+        return videos;
+    }
+
     @JsonSetter("videos")
     public void setVideos(WrapperGenericList<Video> videos) {
         this.videos = videos.getResults();
         addMethod(TVMethod.VIDEOS);
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Getters">
-    public List<AlternativeTitle> getAlternativeTitles() {
-        return alternativeTitles;
-    }
-
-    public List<ChangeKeyItem> getChanges() {
-        return changes;
-    }
-
-    public List<ContentRating> getContentRatings() {
-        return contentRatings;
-    }
-
-    public MediaCreditList getCredits() {
-        return credits;
-    }
-
-    public ExternalID getExternalIDs() {
-        return externalIDs;
-    }
-
-    public List<Artwork> getImages() {
-        return images;
-    }
-
-    public List<Keyword> getKeywords() {
-        return keywords;
-    }
-
-    public List<Translation> getTranslations() {
-        return translations;
-    }
-
-    public List<TVInfo> getSimilarTV() {
-        return similarTV;
-    }
-
-    public List<Video> getVideos() {
-        return videos;
     }
     //</editor-fold>
 }

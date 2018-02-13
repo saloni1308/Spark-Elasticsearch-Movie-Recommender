@@ -20,16 +20,12 @@
 package com.omertron.themoviedbapi.methods;
 
 import com.omertron.themoviedbapi.MovieDbException;
-import static com.omertron.themoviedbapi.methods.AbstractMethod.MAPPER;
 import com.omertron.themoviedbapi.model.review.Review;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Review Methods

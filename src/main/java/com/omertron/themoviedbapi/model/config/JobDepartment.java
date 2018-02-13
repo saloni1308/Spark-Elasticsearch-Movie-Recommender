@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.model.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -37,12 +38,12 @@ public class JobDepartment extends AbstractJsonMapping implements Serializable {
         return department;
     }
 
-    public List<String> getJobs() {
-        return jobs;
-    }
-
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public List<String> getJobs() {
+        return jobs;
     }
 
     public void setJobs(List<String> jobs) {

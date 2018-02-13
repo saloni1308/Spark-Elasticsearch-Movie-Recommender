@@ -19,6 +19,11 @@
  */
 package com.omertron.themoviedbapi.tools;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,10 +31,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The API URL that is used to construct the API call
@@ -44,10 +45,6 @@ public class ApiUrl {
     // Parameter configuration
     private static final String DELIMITER_FIRST = "?";
     private static final String DELIMITER_SUBSEQUENT = "&";
-    // Properties
-    private final String apiKey;
-    private final MethodBase method;
-    private MethodSub submethod = MethodSub.NONE;
     private static final List<Param> IGNORE_PARAMS = new ArrayList<>();
 
     static {
@@ -56,6 +53,11 @@ public class ApiUrl {
         IGNORE_PARAMS.add(Param.SEASON_NUMBER);
         IGNORE_PARAMS.add(Param.EPISODE_NUMBER);
     }
+
+    // Properties
+    private final String apiKey;
+    private final MethodBase method;
+    private MethodSub submethod = MethodSub.NONE;
 
     /**
      * Constructor for the simple API URL method without a sub-method

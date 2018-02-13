@@ -51,7 +51,6 @@ public enum MediaType {
      * @param mediaType
      * @return
      * @throws IllegalArgumentException If type is not recognised
-     *
      */
     public static MediaType fromString(String mediaType) {
         if (StringUtils.isNotBlank(mediaType)) {

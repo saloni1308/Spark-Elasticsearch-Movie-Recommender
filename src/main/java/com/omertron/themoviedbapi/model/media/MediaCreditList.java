@@ -19,11 +19,12 @@
  */
 package com.omertron.themoviedbapi.model.media;
 
-import com.omertron.themoviedbapi.model.credits.MediaCreditCrew;
-import com.omertron.themoviedbapi.model.credits.MediaCreditCast;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.interfaces.Identification;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+import com.omertron.themoviedbapi.model.credits.MediaCreditCast;
+import com.omertron.themoviedbapi.model.credits.MediaCreditCrew;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;

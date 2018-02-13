@@ -42,23 +42,23 @@ public abstract class AbstractWrapperIdPages extends AbstractWrapperId implement
     }
 
     @Override
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    @Override
-    public int getTotalResults() {
-        return totalResults;
-    }
-
-    @Override
     public void setPage(int page) {
         this.page = page;
     }
 
     @Override
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    @Override
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
+    }
+
+    @Override
+    public int getTotalResults() {
+        return totalResults;
     }
 
     @Override

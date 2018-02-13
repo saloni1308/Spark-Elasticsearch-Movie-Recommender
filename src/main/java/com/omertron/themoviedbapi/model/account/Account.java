@@ -19,9 +19,9 @@
  */
 package com.omertron.themoviedbapi.model.account;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.interfaces.Identification;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 
 public class Account extends AbstractJsonMapping implements Identification {
 

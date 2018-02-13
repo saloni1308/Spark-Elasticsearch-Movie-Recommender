@@ -19,8 +19,9 @@
  */
 package com.omertron.themoviedbapi.model.list;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 
 /**

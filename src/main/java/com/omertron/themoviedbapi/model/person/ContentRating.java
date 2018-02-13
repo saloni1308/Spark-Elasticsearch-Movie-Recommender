@@ -20,10 +20,10 @@
 package com.omertron.themoviedbapi.model.person;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
- *
  * @author Stuart.Boston
  */
 public class ContentRating implements Serializable {

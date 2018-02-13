@@ -20,7 +20,6 @@
 package com.omertron.themoviedbapi.enumeration;
 
 /**
- *
  * @author Stuart
  */
 public enum ExternalSource {

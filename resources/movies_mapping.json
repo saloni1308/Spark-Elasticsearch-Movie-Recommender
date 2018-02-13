@@ -1,50 +1,50 @@
 {
-	"settings": {
-		"analysis": {
-			"analyzer": {
-				"payload_analyzer": {
-					"type": "custom",
-					"tokenizer": "whitespace",
-					"filter": "delimited_payload_filter"
-				}
-			}
-		}
-	},
-	"mappings": {
-		"movies": {
-			"properties": {
-				"movieId": {
-					"type": "integer"
-				},
-				"imdbId": {
-					"type": "keyword"
-				},
-				"tmdbId": {
-					"type": "keyword"
-				},
-				"genres": {
-					"type": "keyword"
-				},
-				"release_date": {
-					"type": "date",
-					"format": "year"
-				},
-				"@model": {
-					"properties": {
-						"factor": {
-							"type": "text",
-							"term_vector": "with_positions_offsets_payloads",
-							"analyzer": "payload_analyzer"
-						},
-						"version": {
-							"type": "keyword"
-						},
-						"timestamp": {
-							"type": "date"
-						}
-					}
-				}
-			}
-		}
-	}
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "payload_analyzer": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "filter": "delimited_payload_filter"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "movies": {
+      "properties": {
+        "movieId": {
+          "type": "integer"
+        },
+        "imdbId": {
+          "type": "keyword"
+        },
+        "tmdbId": {
+          "type": "keyword"
+        },
+        "genres": {
+          "type": "keyword"
+        },
+        "release_date": {
+          "type": "date",
+          "format": "year"
+        },
+        "@model": {
+          "properties": {
+            "factor": {
+              "type": "text",
+              "term_vector": "with_positions_offsets_payloads",
+              "analyzer": "payload_analyzer"
+            },
+            "version": {
+              "type": "keyword"
+            },
+            "timestamp": {
+              "type": "date"
+            }
+          }
+        }
+      }
+    }
+  }
 }

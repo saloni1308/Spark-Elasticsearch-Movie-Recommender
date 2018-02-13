@@ -20,10 +20,10 @@
 package com.omertron.themoviedbapi.model.credits;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
- *
  * @author Stuart.Boston
  */
 public class MediaCreditCrew extends MediaCredit implements Serializable {

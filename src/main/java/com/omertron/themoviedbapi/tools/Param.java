@@ -19,8 +19,9 @@
  */
 package com.omertron.themoviedbapi.tools;
 
-import java.util.EnumSet;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.EnumSet;
 
 /**
  * Parameters for use in the URL
@@ -89,15 +90,6 @@ public enum Param {
     }
 
     /**
-     * Get the URL parameter to use
-     *
-     * @return value
-     */
-    public String getValue() {
-        return this.value;
-    }
-
-    /**
      * Convert a string into an Enum type
      *
      * @param value the string representation of the enum
@@ -114,6 +106,15 @@ public enum Param {
 
         // We've not found the type!
         throw new IllegalArgumentException("Value '" + value + "' not recognised");
+    }
+
+    /**
+     * Get the URL parameter to use
+     *
+     * @return value
+     */
+    public String getValue() {
+        return this.value;
     }
 
 }

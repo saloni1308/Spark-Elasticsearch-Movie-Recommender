@@ -2,6 +2,7 @@ package com.omertron.themoviedbapi.model.movie;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.util.List;
 
 public class ReleaseDates extends AbstractJsonMapping {

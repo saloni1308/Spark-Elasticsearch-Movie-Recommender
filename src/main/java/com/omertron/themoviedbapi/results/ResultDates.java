@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 
 /**
- *
  * @author Stuart
  */
 public class ResultDates extends AbstractJsonMapping {
@@ -37,12 +36,12 @@ public class ResultDates extends AbstractJsonMapping {
         return minimum;
     }
 
-    public String getMaximum() {
-        return maximum;
-    }
-
     public void setMinimum(String minimum) {
         this.minimum = minimum;
+    }
+
+    public String getMaximum() {
+        return maximum;
     }
 
     public void setMaximum(String maximum) {

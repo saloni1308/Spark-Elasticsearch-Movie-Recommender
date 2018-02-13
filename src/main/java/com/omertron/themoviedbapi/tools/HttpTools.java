@@ -20,11 +20,6 @@
 package com.omertron.themoviedbapi.tools;
 
 import com.omertron.themoviedbapi.MovieDbException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.concurrent.TimeUnit;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -38,6 +33,12 @@ import org.yamj.api.common.exception.ApiExceptionType;
 import org.yamj.api.common.http.DigestedResponse;
 import org.yamj.api.common.http.DigestedResponseReader;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.concurrent.TimeUnit;
+
 /**
  * HTTP tools to aid in processing web requests
  *
@@ -45,12 +46,12 @@ import org.yamj.api.common.http.DigestedResponseReader;
  */
 public class HttpTools {
 
-    private final HttpClient httpClient;
     private static final Charset CHARSET = Charset.forName("UTF-8");
     private static final String APPLICATION_JSON = "application/json";
     private static final long RETRY_DELAY = 1;
     private static final int RETRY_MAX = 5;
     private static final int STATUS_TOO_MANY_REQUESTS = 429;
+    private final HttpClient httpClient;
 
     public HttpTools(HttpClient httpClient) {
         this.httpClient = httpClient;
@@ -119,7 +120,7 @@ public class HttpTools {
     /**
      * POST content to the URL with the specified body
      *
-     * @param url URL to use in the request
+     * @param url      URL to use in the request
      * @param jsonBody Body to use in the request
      * @return String content
      * @throws MovieDbException exception
@@ -142,7 +143,7 @@ public class HttpTools {
      * Check the status codes of the response and throw exceptions if needed
      *
      * @param response DigestedResponse to process
-     * @param url URL for notification purposes
+     * @param url      URL for notification purposes
      * @return String content
      * @throws MovieDbException exception
      */
