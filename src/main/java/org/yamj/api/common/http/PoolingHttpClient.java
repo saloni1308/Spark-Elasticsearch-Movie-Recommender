@@ -19,9 +19,6 @@
  */
 package org.yamj.api.common.http;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.*;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.client.ClientProtocolException;
@@ -33,15 +30,20 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.*;
+import java.util.Map;
+
 public class PoolingHttpClient extends HttpClientWrapper {
 
     private static final Logger LOG = LoggerFactory.getLogger(PoolingHttpClient.class);
     private static final Charset UTF8_CHARSET = Charset.forName("UTF-8");
-    
+
     private final PoolingHttpClientConnectionManager connManager;
     private final Map<String, Integer> groupLimits;
     private final List<String> routedHosts;
-    
+
     public PoolingHttpClient(HttpClient httpClient, PoolingHttpClientConnectionManager connManager) {
         super(httpClient);
         this.connManager = connManager;
@@ -52,7 +54,7 @@ public class PoolingHttpClient extends HttpClientWrapper {
     public Charset getDefaultCharset() {
         return UTF8_CHARSET;
     }
-    
+
     public void addGroupLimit(String group, Integer limit) {
         this.groupLimits.put(group, limit);
     }
@@ -65,34 +67,34 @@ public class PoolingHttpClient extends HttpClientWrapper {
     @Override
     protected void prepareRequest(HttpHost target, HttpRequest request) throws ClientProtocolException {
         super.prepareRequest(target, request);
-      
+
         String key = target.toString();
-  
+
         synchronized (routedHosts) {
             if (!routedHosts.contains(key)) {
                 String group = ".*";
                 for (String searchGroup : groupLimits.keySet()) {
                     if (key.matches(searchGroup) && searchGroup.length() > group.length()) {
                         group = searchGroup;
-  
+
                     }
                 }
                 int maxRequests = groupLimits.get(group);
-  
+
                 LOG.debug("IO download host: {}; rule: {}, maxRequests: {}", key, group, maxRequests);
                 routedHosts.add(key);
-  
+
                 HttpRoute httpRoute = new HttpRoute(target);
                 connManager.setMaxPerRoute(httpRoute, maxRequests);
             }
         }
     }
-  
+
     @Override
     public DigestedResponse requestContent(HttpGet httpGet, Charset charset) throws IOException {
         return super.requestContent(httpGet, (charset == null) ? getDefaultCharset() : charset);
     }
-    
+
     @Override
     public void close() throws IOException {
         super.close();

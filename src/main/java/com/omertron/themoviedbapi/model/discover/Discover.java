@@ -32,10 +32,9 @@ import com.omertron.themoviedbapi.tools.TmdbParameters;
  */
 public class Discover {
 
-    private final TmdbParameters params = new TmdbParameters();
-
     private static final int YEAR_MIN = 1900;
     private static final int YEAR_MAX = 2100;
+    private final TmdbParameters params = new TmdbParameters();
 
     /**
      * Get the parameters
@@ -100,7 +99,7 @@ public class Discover {
 
     /**
      * Toggle the inclusion of items marked as a video.
-     *
+     * <p>
      * Expected value is a boolean, true or false. Default is true.
      *
      * @param includeVideo
@@ -237,7 +236,7 @@ public class Discover {
 
     /**
      * Only include movies with this certification.
-     *
+     * <p>
      * Expected value is a valid certification for the specified 'certificationCountry'.
      *
      * @param certification
@@ -250,9 +249,9 @@ public class Discover {
 
     /**
      * Only include movies that have this person id added as a cast member.
-     *
+     * <p>
      * Expected value is an integer (the id of a person).
-     *
+     * <p>
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'
      *
      * @param withCast
@@ -265,9 +264,9 @@ public class Discover {
 
     /**
      * Only include media that have these person IDs added as cast members.
-     *
+     * <p>
      * Use the WithBuilder to generate the list,e.g.
-     *
+     * <p>
      * new WithBuilder(1).and(2).and(3)
      *
      * @param withCast
@@ -279,9 +278,9 @@ public class Discover {
 
     /**
      * Only include movies that have this person id added as a crew member.
-     *
+     * <p>
      * Expected value is an integer (the id of a person).
-     *
+     * <p>
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
      * @param withCrew
@@ -294,9 +293,9 @@ public class Discover {
 
     /**
      * Only include media that have these person IDs added as crew members.
-     *
+     * <p>
      * Use the WithBuilder to generate the list,e.g.
-     *
+     * <p>
      * new WithBuilder(1).and(2).and(3)
      *
      * @param withCrew
@@ -308,9 +307,9 @@ public class Discover {
 
     /**
      * Filter movies to include a specific company.
-     *
+     * <p>
      * Expected value is an integer (the id of a company).
-     *
+     * <p>
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'
      *
      * @param withCompanies
@@ -323,9 +322,9 @@ public class Discover {
 
     /**
      * Filter movies to include a specific company.
-     *
+     * <p>
      * Use the WithBuilder to generate the list,e.g.
-     *
+     * <p>
      * new WithBuilder(1).and(2).and(3)
      *
      * @param withCompanies
@@ -354,9 +353,9 @@ public class Discover {
 
     /**
      * Only include movies with the specified genres.
-     *
+     * <p>
      * Use the WithBuilder to generate the list,e.g.
-     *
+     * <p>
      * new WithBuilder(1).and(2).and(3)
      *
      * @param withGenres
@@ -368,9 +367,9 @@ public class Discover {
 
     /**
      * Only include movies with the specified genres.
-     *
+     * <p>
      * Expected value is an integer (the id of a genre).
-     *
+     * <p>
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
      * @param withKeywords
@@ -383,9 +382,9 @@ public class Discover {
 
     /**
      * Only include movies with the specified genres.
-     *
+     * <p>
      * Use the WithBuilder to generate the list,e.g.
-     *
+     * <p>
      * new WithBuilder(1).and(2).and(3)
      *
      * @param withKeywords
@@ -397,9 +396,9 @@ public class Discover {
 
     /**
      * Only include movies that have these person id's added as a cast or crew member.
-     *
+     * <p>
      * Expected value is an integer (the id or ids of a person).
-     *
+     * <p>
      * Comma separated indicates an 'AND' query, while a pipe (|) separated value indicates an 'OR'.
      *
      * @param withPeople
@@ -412,9 +411,9 @@ public class Discover {
 
     /**
      * Only include movies that have these person id's added as a cast or crew member.
-     *
+     * <p>
      * Use the WithBuilder to generate the list,e.g.
-     *
+     * <p>
      * new WithBuilder(1).and(2).and(3)
      *
      * @param withPeople
@@ -426,7 +425,7 @@ public class Discover {
 
     /**
      * Filter the air dates that match this year
-     *
+     * <p>
      * Expected value is a year.
      *
      * @param year
@@ -467,9 +466,9 @@ public class Discover {
 
     /**
      * Filter TV shows to include a specific network.
-     *
+     * <p>
      * Expected value is an integer (the id of a network).
-     *
+     * <p>
      * They can be comma separated to indicate an 'AND' query.
      *
      * @param withNetworks
@@ -482,9 +481,9 @@ public class Discover {
 
     /**
      * Filter TV shows to include a specific network.
-     *
+     * <p>
      * Use the WithBuilder to generate the list,e.g.
-     *
+     * <p>
      * new WithBuilder(1).and(2).and(3)
      *
      * @param withNetworks

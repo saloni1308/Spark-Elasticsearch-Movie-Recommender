@@ -19,20 +19,21 @@
  */
 package org.yamj.api.common.http;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
-import java.nio.charset.Charset;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.charset.Charset;
+
 public interface CommonHttpClient extends HttpClient {
 
     void setUserAgentSelector(IUserAgentSelector userAgentSelector);
-    
+
     DigestedResponse requestContent(URL url) throws IOException;
 
     DigestedResponse requestContent(URL url, Charset charset) throws IOException;
@@ -51,7 +52,7 @@ public interface CommonHttpClient extends HttpClient {
 
     DigestedResponse postContent(URL url, HttpEntity entity) throws IOException;
 
-    DigestedResponse postContent(URL url, HttpEntity entity,  Charset charset) throws IOException;
+    DigestedResponse postContent(URL url, HttpEntity entity, Charset charset) throws IOException;
 
     DigestedResponse postContent(String uri, HttpEntity entity) throws IOException;
 

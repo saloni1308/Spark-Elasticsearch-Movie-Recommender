@@ -20,35 +20,20 @@
 package com.omertron.themoviedbapi.methods;
 
 import com.omertron.themoviedbapi.MovieDbException;
-import static com.omertron.themoviedbapi.methods.AbstractMethod.MAPPER;
 import com.omertron.themoviedbapi.model.StatusCode;
 import com.omertron.themoviedbapi.model.artwork.Artwork;
 import com.omertron.themoviedbapi.model.change.ChangeKeyItem;
 import com.omertron.themoviedbapi.model.keyword.Keyword;
-import com.omertron.themoviedbapi.model.media.AlternativeTitle;
-import com.omertron.themoviedbapi.model.media.MediaCreditList;
-import com.omertron.themoviedbapi.model.media.MediaState;
-import com.omertron.themoviedbapi.model.media.Translation;
-import com.omertron.themoviedbapi.model.media.Video;
+import com.omertron.themoviedbapi.model.media.*;
 import com.omertron.themoviedbapi.model.person.ContentRating;
 import com.omertron.themoviedbapi.model.person.ExternalID;
 import com.omertron.themoviedbapi.model.tv.TVInfo;
-import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.results.WrapperGenericList;
-import com.omertron.themoviedbapi.results.WrapperImages;
-import com.omertron.themoviedbapi.results.WrapperTranslations;
-import com.omertron.themoviedbapi.results.WrapperVideos;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.PostBody;
-import com.omertron.themoviedbapi.tools.PostTools;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
+import com.omertron.themoviedbapi.results.*;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the TV Methods
@@ -97,7 +82,7 @@ public class TmdbTV extends AbstractMethod {
     /**
      * This method lets users get the status of whether or not the TV show has
      * been rated or added to their favourite or watch lists.
-     *
+     * <p>
      * A valid session id is required.
      *
      * @param tvID
@@ -256,7 +241,7 @@ public class TmdbTV extends AbstractMethod {
 
     /**
      * This method lets users rate a TV show.
-     *
+     * <p>
      * A valid session id or guest session id is required.
      *
      * @param tvID
@@ -380,7 +365,7 @@ public class TmdbTV extends AbstractMethod {
 
     /**
      * Get the list of TV shows that are currently on the air.
-     *
+     * <p>
      * This query looks for any TV show that has an episode with an air date in
      * the next 7 days.
      *
@@ -401,7 +386,7 @@ public class TmdbTV extends AbstractMethod {
 
     /**
      * Get the list of TV shows that air today.
-     *
+     * <p>
      * Without a specified timezone, this query defaults to EST
      *
      * @param page
@@ -423,10 +408,10 @@ public class TmdbTV extends AbstractMethod {
 
     /**
      * Get the list of top rated TV shows.
-     *
+     * <p>
      * By default, this list will only include TV shows that have 2 or more
      * votes.
-     *
+     * <p>
      * This list refreshes every day.
      *
      * @param page

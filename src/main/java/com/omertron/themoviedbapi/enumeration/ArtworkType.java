@@ -49,7 +49,6 @@ public enum ArtworkType {
      * @param artworkType
      * @return
      * @throws IllegalArgumentException If type is not recognised
-     *
      */
     public static ArtworkType fromString(String artworkType) {
         if (StringUtils.isNotBlank(artworkType)) {

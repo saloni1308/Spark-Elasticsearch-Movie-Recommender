@@ -20,40 +20,22 @@
 package com.omertron.themoviedbapi.methods;
 
 import com.omertron.themoviedbapi.MovieDbException;
-import static com.omertron.themoviedbapi.methods.AbstractMethod.MAPPER;
 import com.omertron.themoviedbapi.model.StatusCode;
 import com.omertron.themoviedbapi.model.artwork.Artwork;
 import com.omertron.themoviedbapi.model.change.ChangeKeyItem;
 import com.omertron.themoviedbapi.model.keyword.Keyword;
 import com.omertron.themoviedbapi.model.list.UserList;
-import com.omertron.themoviedbapi.model.media.AlternativeTitle;
-import com.omertron.themoviedbapi.model.media.MediaCreditList;
-import com.omertron.themoviedbapi.model.media.MediaState;
-import com.omertron.themoviedbapi.model.media.Translation;
-import com.omertron.themoviedbapi.model.media.Video;
+import com.omertron.themoviedbapi.model.media.*;
 import com.omertron.themoviedbapi.model.movie.MovieInfo;
 import com.omertron.themoviedbapi.model.movie.ReleaseDates;
 import com.omertron.themoviedbapi.model.movie.ReleaseInfo;
 import com.omertron.themoviedbapi.model.review.Review;
-import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.results.WrapperAlternativeTitles;
-import com.omertron.themoviedbapi.results.WrapperGenericList;
-import com.omertron.themoviedbapi.results.WrapperImages;
-import com.omertron.themoviedbapi.results.WrapperMovieKeywords;
-import com.omertron.themoviedbapi.results.WrapperReleaseInfo;
-import com.omertron.themoviedbapi.results.WrapperTranslations;
-import com.omertron.themoviedbapi.results.WrapperVideos;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.PostBody;
-import com.omertron.themoviedbapi.tools.PostTools;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
+import com.omertron.themoviedbapi.results.*;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Movie Methods
@@ -76,9 +58,9 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method is used to retrieve all of the basic movie information.
-     *
+     * <p>
      * It will return the single highest rated poster and backdrop.
-     *
+     * <p>
      * ApiExceptionType.MOVIE_ID_NOT_FOUND will be thrown if there are no movies found.
      *
      * @param movieId
@@ -108,9 +90,9 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method is used to retrieve all of the basic movie information.
-     *
+     * <p>
      * It will return the single highest rated poster and backdrop.
-     *
+     * <p>
      * ApiExceptionType.MOVIE_ID_NOT_FOUND will be thrown if there are no movies found.
      *
      * @param imdbId
@@ -142,7 +124,7 @@ public class TmdbMovies extends AbstractMethod {
     /**
      * This method lets a user get the status of whether or not the movie has been rated or added to their favourite or movie watch
      * list.
-     *
+     * <p>
      * A valid session id is required.
      *
      * @param movieId
@@ -238,7 +220,7 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method is used to retrieve all of the keywords that have been added to a particular movie.
-     *
+     * <p>
      * Currently, only English keywords exist.
      *
      * @param movieId
@@ -290,7 +272,7 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method is used to retrieve all of the trailers for a particular movie.
-     *
+     * <p>
      * Supported sites are YouTube and QuickTime.
      *
      * @param movieId
@@ -318,11 +300,11 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * Get the release dates, certifications and related information by country for a specific movie id.
-     *
+     * <p>
      * The results are keyed by country code and contain a type value.
      *
      * @param movieId
-     * @return 
+     * @return
      * @throws MovieDbException
      */
     public ResultList<ReleaseDates> getReleaseDates(int movieId) throws MovieDbException {
@@ -360,9 +342,9 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * The similar movies method will let you retrieve the similar movies for a particular movie.
-     *
+     * <p>
      * This data is created dynamically but with the help of users votes on TMDb.
-     *
+     * <p>
      * The data is much better with movies that have more keywords
      *
      * @param movieId
@@ -424,13 +406,13 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * Get the changes for a specific movie ID.
-     *
+     * <p>
      * Changes are grouped by key, and ordered by date in descending order.
-     *
+     * <p>
      * By default, only the last 24 hours of changes are returned.
-     *
+     * <p>
      * The maximum number of days that can be returned in a single request is 14.
-     *
+     * <p>
      * The language is present on fields that are translatable.
      *
      * @param movieId
@@ -445,7 +427,7 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method lets users rate a movie.
-     *
+     * <p>
      * A valid session id or guest session id is required.
      *
      * @param sessionId
@@ -498,9 +480,9 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * Get the list of upcoming movies.
-     *
+     * <p>
      * This list refreshes every day.
-     *
+     * <p>
      * The maximum number of items this list will include is 100.
      *
      * @param language
@@ -520,7 +502,7 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method is used to retrieve the movies currently in theatres.
-     *
+     * <p>
      * This is a curated list that will normally contain 100 movies. The default response will return 20 movies.
      *
      * @param language
@@ -540,7 +522,7 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method is used to retrieve the daily movie popularity list.
-     *
+     * <p>
      * This list is updated daily. The default response will return 20 movies.
      *
      * @param language
@@ -560,7 +542,7 @@ public class TmdbMovies extends AbstractMethod {
 
     /**
      * This method is used to retrieve the top rated movies that have over 10 votes on TMDb.
-     *
+     * <p>
      * The default response will return 20 movies.
      *
      * @param language

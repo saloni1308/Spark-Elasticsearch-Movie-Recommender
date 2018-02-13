@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.model.change;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 
 public class ChangeListItem extends AbstractJsonMapping implements Serializable {
@@ -36,12 +37,12 @@ public class ChangeListItem extends AbstractJsonMapping implements Serializable 
         return id;
     }
 
-    public boolean isAdult() {
-        return adult;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isAdult() {
+        return adult;
     }
 
     public void setAdult(boolean adult) {

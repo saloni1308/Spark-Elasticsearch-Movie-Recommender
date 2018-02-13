@@ -20,6 +20,7 @@
 package com.omertron.themoviedbapi.results;
 
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -31,7 +32,7 @@ public abstract class AbstractWrapperBase extends AbstractJsonMapping {
      * Get a list of the enums passed
      *
      * @param <E>
-     * @param clz Class of the enum
+     * @param clz      Class of the enum
      * @param typeList Array of the enums
      * @return
      */

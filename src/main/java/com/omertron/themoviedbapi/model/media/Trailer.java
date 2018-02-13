@@ -19,11 +19,12 @@
  */
 package com.omertron.themoviedbapi.model.media;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.io.Serializable;
 
 /**
  * Trailer specific information from the "Append to Response" method

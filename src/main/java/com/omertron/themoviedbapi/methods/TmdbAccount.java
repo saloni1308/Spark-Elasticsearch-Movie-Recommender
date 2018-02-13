@@ -28,18 +28,12 @@ import com.omertron.themoviedbapi.model.list.UserList;
 import com.omertron.themoviedbapi.model.movie.MovieBasic;
 import com.omertron.themoviedbapi.model.tv.TVBasic;
 import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.PostBody;
-import com.omertron.themoviedbapi.tools.PostTools;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Account Methods
@@ -299,7 +293,7 @@ public class TmdbAccount extends AbstractMethod {
      * @param guestSessionId
      * @param language
      * @param page
-     * @param sortBy only CREATED_AT_ASC or CREATED_AT_DESC is supported
+     * @param sortBy         only CREATED_AT_ASC or CREATED_AT_DESC is supported
      * @return
      * @throws MovieDbException
      */

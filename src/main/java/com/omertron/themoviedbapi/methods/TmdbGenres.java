@@ -23,17 +23,13 @@ import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.model.Genre;
 import com.omertron.themoviedbapi.model.movie.MovieBasic;
 import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
 import com.omertron.themoviedbapi.results.WrapperGenres;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Genre Methods
@@ -101,7 +97,7 @@ public class TmdbGenres extends AbstractMethod {
 
     /**
      * Get the list of movies for a particular genre by id.
-     *
+     * <p>
      * By default, only movies with 10 or more votes are included.
      *
      * @param genreId

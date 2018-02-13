@@ -19,22 +19,26 @@
  */
 package org.yamj.api.common.http;
 
+import org.apache.http.*;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.utils.URIUtils;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.protocol.HttpContext;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import org.apache.http.*;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.*;
-import org.apache.http.client.utils.URIUtils;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.protocol.HttpContext;
 
 @SuppressWarnings("deprecation")
 public class HttpClientWrapper implements CommonHttpClient, Closeable {
@@ -49,6 +53,26 @@ public class HttpClientWrapper implements CommonHttpClient, Closeable {
     public HttpClientWrapper(HttpClient httpClient, IUserAgentSelector userAgentSelector) {
         this.httpClient = httpClient;
         this.userAgentSelector = userAgentSelector;
+    }
+
+    protected static HttpHost determineTarget(HttpUriRequest request) throws ClientProtocolException {
+        HttpHost target = null;
+        URI requestURI = request.getURI();
+        if (requestURI.isAbsolute()) {
+            target = URIUtils.extractHost(requestURI);
+            if (target == null) {
+                throw new ClientProtocolException("URI does not specify a valid host name: " + requestURI);
+            }
+        }
+        return target;
+    }
+
+    protected static URI toURI(URL url) {
+        try {
+            return url.toURI();
+        } catch (URISyntaxException ex) {
+            throw new IllegalArgumentException("Invalid URL: " + url, ex);
+        }
     }
 
     @Override
@@ -74,18 +98,6 @@ public class HttpClientWrapper implements CommonHttpClient, Closeable {
                 request.setHeader(HTTP.USER_AGENT, userAgentSelector.getUserAgent());
             }
         }
-    }
-
-    protected static HttpHost determineTarget(HttpUriRequest request) throws ClientProtocolException {
-        HttpHost target = null;
-        URI requestURI = request.getURI();
-        if (requestURI.isAbsolute()) {
-            target = URIUtils.extractHost(requestURI);
-            if (target == null) {
-                throw new ClientProtocolException("URI does not specify a valid host name: " + requestURI);
-            }
-        }
-        return target;
     }
 
     @Override
@@ -360,14 +372,6 @@ public class HttpClientWrapper implements CommonHttpClient, Closeable {
     public void close() throws IOException {
         if (httpClient instanceof Closeable) {
             ((Closeable) this.httpClient).close();
-        }
-    }
-
-    protected static URI toURI(URL url) {
-        try {
-            return url.toURI();
-        } catch (URISyntaxException ex) {
-            throw new IllegalArgumentException("Invalid URL: " + url, ex);
         }
     }
 }

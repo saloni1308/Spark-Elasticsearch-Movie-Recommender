@@ -34,26 +34,22 @@ import com.omertron.themoviedbapi.model.movie.MovieBasic;
 import com.omertron.themoviedbapi.model.movie.MovieInfo;
 import com.omertron.themoviedbapi.model.movie.ReleaseDates;
 import com.omertron.themoviedbapi.model.person.ContentRating;
-import com.omertron.themoviedbapi.model.person.PersonInfo;
 import com.omertron.themoviedbapi.model.person.PersonFind;
+import com.omertron.themoviedbapi.model.person.PersonInfo;
 import com.omertron.themoviedbapi.model.review.Review;
 import com.omertron.themoviedbapi.model.tv.TVBasic;
 import com.omertron.themoviedbapi.model.tv.TVInfo;
 import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
 import com.omertron.themoviedbapi.results.WrapperChanges;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Abstract methods
@@ -62,10 +58,6 @@ import org.yamj.api.common.exception.ApiExceptionType;
  */
 public class AbstractMethod {
 
-    // The API key to be used
-    protected final String apiKey;
-    // The HttpTools to use
-    protected final HttpTools httpTools;
     // Jackson JSON configuration
     protected static final ObjectMapper MAPPER = new ObjectMapper();
     private static final Map<Class, TypeReference> TYPE_REFS = new HashMap<>();
@@ -106,6 +98,11 @@ public class AbstractMethod {
 
     }
 
+    // The API key to be used
+    protected final String apiKey;
+    // The HttpTools to use
+    protected final HttpTools httpTools;
+
     /**
      * Default constructor for the methods
      *
@@ -135,9 +132,9 @@ public class AbstractMethod {
     /**
      * Process the wrapper list and return the results
      *
-     * @param <T> Type of list to process
+     * @param <T>                Type of list to process
      * @param typeRef
-     * @param url URL of the page (Error output only)
+     * @param url                URL of the page (Error output only)
      * @param errorMessageSuffix Error message to output (Error output only)
      * @return
      * @throws MovieDbException
@@ -150,9 +147,9 @@ public class AbstractMethod {
     /**
      * Process the wrapper list and return the whole wrapper
      *
-     * @param <T> Type of list to process
+     * @param <T>                Type of list to process
      * @param typeRef
-     * @param url URL of the page (Error output only)
+     * @param url                URL of the page (Error output only)
      * @param errorMessageSuffix Error message to output (Error output only)
      * @return
      * @throws MovieDbException
@@ -169,7 +166,6 @@ public class AbstractMethod {
     }
 
     /**
-     *
      * Look up the media's changes by ID
      *
      * @param mediaID

@@ -1,32 +1,32 @@
 {
-	"settings": {
-		"analysis": {
-			"analyzer": {
-				"payload_analyzer": {
-					"type": "custom",
-					"tokenizer": "whitespace",
-					"filter": "delimited_payload_filter"
-				}
-			}
-		}
-	},
-	"mappings": {
-		"ratings": {
-			"properties": {
-				"timestamp": {
-					"type": "date"
-				},
-				"userId": {
-					"type": "integer"
-				},
-				"movieId": {
-					"type": "integer"
-				},
-				"rating": {
-					"type": "double"
-				}
-			}
-		}
-	}
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "payload_analyzer": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "filter": "delimited_payload_filter"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "ratings": {
+      "properties": {
+        "timestamp": {
+          "type": "date"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "movieId": {
+          "type": "integer"
+        },
+        "rating": {
+          "type": "double"
+        }
+      }
+    }
+  }
 }
         

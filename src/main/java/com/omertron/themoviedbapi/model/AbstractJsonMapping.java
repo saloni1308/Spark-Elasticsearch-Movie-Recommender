@@ -20,11 +20,12 @@
 package com.omertron.themoviedbapi.model;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.Serializable;
 
 /**
  * Abstract class to handle any unknown properties by outputting a log message
@@ -46,7 +47,7 @@ public abstract class AbstractJsonMapping implements Serializable {
     protected void handleUnknown(String key, Object value) {
         StringBuilder unknown = new StringBuilder(this.getClass().getSimpleName());
         unknown.append(": Unknown property='").append(key)
-               .append("' value='").append(value).append("'");
+                .append("' value='").append(value).append("'");
 
         LOG.trace(unknown.toString());
     }

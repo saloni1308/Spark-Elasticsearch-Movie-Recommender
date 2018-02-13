@@ -27,6 +27,7 @@ import com.omertron.themoviedbapi.model.media.MediaBasic;
 import com.omertron.themoviedbapi.model.movie.MovieBasic;
 import com.omertron.themoviedbapi.model.tv.TVBasic;
 import com.omertron.themoviedbapi.model.tv.TVEpisodeBasic;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -70,9 +71,9 @@ public class PersonFind extends PersonBasic implements Serializable {
             defaultImpl = MediaBasic.class
     )
     @JsonSubTypes({
-        @JsonSubTypes.Type(value = MovieBasic.class, name = "movie"),
-        @JsonSubTypes.Type(value = TVBasic.class, name = "tv"),
-        @JsonSubTypes.Type(value = TVEpisodeBasic.class, name = "episode")
+            @JsonSubTypes.Type(value = MovieBasic.class, name = "movie"),
+            @JsonSubTypes.Type(value = TVBasic.class, name = "tv"),
+            @JsonSubTypes.Type(value = TVEpisodeBasic.class, name = "episode")
     })
     @JsonSetter("known_for")
     public void setKnownFor(List<? extends MediaBasic> knownFor) {

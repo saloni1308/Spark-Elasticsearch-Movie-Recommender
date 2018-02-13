@@ -21,9 +21,10 @@ package com.omertron.themoviedbapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.io.Serializable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.io.Serializable;
 
 /**
  * @author stuart.boston
@@ -42,12 +43,12 @@ public class Language extends AbstractJsonMapping implements Serializable {
         return code;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {

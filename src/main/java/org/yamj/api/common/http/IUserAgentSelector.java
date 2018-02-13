@@ -26,5 +26,5 @@ public interface IUserAgentSelector {
      *
      * @return
      */
-    String getUserAgent(); 
+    String getUserAgent();
 }

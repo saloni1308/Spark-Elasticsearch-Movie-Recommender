@@ -26,10 +26,10 @@ import com.omertron.themoviedbapi.model.media.MediaBasic;
 import com.omertron.themoviedbapi.model.movie.MovieBasic;
 import com.omertron.themoviedbapi.model.tv.TVBasic;
 import com.omertron.themoviedbapi.model.tv.TVEpisodeBasic;
+
 import java.util.List;
 
 /**
- *
  * @author stuart.boston
  */
 public class WrapperMultiSearch extends AbstractWrapperAll {
@@ -47,9 +47,9 @@ public class WrapperMultiSearch extends AbstractWrapperAll {
             defaultImpl = MediaBasic.class
     )
     @JsonSubTypes({
-        @JsonSubTypes.Type(value = MovieBasic.class, name = "movie"),
-        @JsonSubTypes.Type(value = TVBasic.class, name = "tv"),
-        @JsonSubTypes.Type(value = TVEpisodeBasic.class, name = "episode")
+            @JsonSubTypes.Type(value = MovieBasic.class, name = "movie"),
+            @JsonSubTypes.Type(value = TVBasic.class, name = "tv"),
+            @JsonSubTypes.Type(value = TVEpisodeBasic.class, name = "episode")
     })
     @JsonSetter("results")
     public void setResults(List<? extends MediaBasic> results) {

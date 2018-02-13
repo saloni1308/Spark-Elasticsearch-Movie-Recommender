@@ -19,8 +19,9 @@
  */
 package com.omertron.themoviedbapi.model.authentication;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 
 public class TokenAuthorisation extends AbstractJsonMapping implements Serializable {
@@ -37,20 +38,20 @@ public class TokenAuthorisation extends AbstractJsonMapping implements Serializa
         return expires;
     }
 
-    public String getRequestToken() {
-        return requestToken;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
     public void setExpires(String expires) {
         this.expires = expires;
     }
 
+    public String getRequestToken() {
+        return requestToken;
+    }
+
     public void setRequestToken(String requestToken) {
         this.requestToken = requestToken;
+    }
+
+    public Boolean getSuccess() {
+        return success;
     }
 
     public void setSuccess(Boolean success) {

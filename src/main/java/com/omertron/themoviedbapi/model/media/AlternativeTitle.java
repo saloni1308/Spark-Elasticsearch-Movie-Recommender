@@ -20,9 +20,10 @@
 package com.omertron.themoviedbapi.model.media;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.io.Serializable;
 
 /**
  * @author Stuart
@@ -40,12 +41,12 @@ public class AlternativeTitle implements Serializable {
         return country;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {

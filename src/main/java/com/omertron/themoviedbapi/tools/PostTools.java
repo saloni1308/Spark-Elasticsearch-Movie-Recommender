@@ -22,12 +22,12 @@ package com.omertron.themoviedbapi.tools;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omertron.themoviedbapi.MovieDbException;
-import java.util.HashMap;
-import java.util.Map;
 import org.yamj.api.common.exception.ApiExceptionType;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- *
  * @author Stuart.Boston
  */
 public class PostTools {

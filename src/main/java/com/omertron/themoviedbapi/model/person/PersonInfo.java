@@ -32,6 +32,7 @@ import com.omertron.themoviedbapi.model.credits.CreditTVBasic;
 import com.omertron.themoviedbapi.results.WrapperChanges;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
 import com.omertron.themoviedbapi.results.WrapperImages;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -44,7 +45,8 @@ import java.util.Set;
 public class PersonInfo extends PersonBasic implements Serializable, AppendToResponse<PeopleMethod> {
 
     private static final long serialVersionUID = 100L;
-
+    // AppendToResponse
+    private final Set<PeopleMethod> methods = EnumSet.noneOf(PeopleMethod.class);
     @JsonProperty("adult")
     private boolean adult;
     @JsonProperty("also_known_as")
@@ -64,8 +66,6 @@ public class PersonInfo extends PersonBasic implements Serializable, AppendToRes
     @JsonProperty("popularity")
     private float popularity;
     private Gender gender;
-    // AppendToResponse
-    private final Set<PeopleMethod> methods = EnumSet.noneOf(PeopleMethod.class);
     // AppendToResponse Properties
     private List<ChangeKeyItem> changes = Collections.emptyList();
     private ExternalID externalIDs = new ExternalID();
@@ -166,11 +166,20 @@ public class PersonInfo extends PersonBasic implements Serializable, AppendToRes
         return methods.contains(method);
     }
 
+    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Getters">
+    public List<ChangeKeyItem> getChanges() {
+        return changes;
+    }
+
     //<editor-fold defaultstate="collapsed" desc="AppendToResponse Setters">
     @JsonSetter("changes")
     public void setChanges(WrapperChanges changes) {
         this.changes = changes.getChangedItems();
         addMethod(PeopleMethod.CHANGES);
+    }
+
+    public ExternalID getExternalIDs() {
+        return externalIDs;
     }
 
     @JsonSetter("external_ids")
@@ -179,10 +188,19 @@ public class PersonInfo extends PersonBasic implements Serializable, AppendToRes
         addMethod(PeopleMethod.EXTERNAL_IDS);
     }
 
+    public List<Artwork> getImages() {
+        return images;
+    }
+
     @JsonSetter("images")
     public void setImages(WrapperImages images) {
         this.images = images.getAll();
         addMethod(PeopleMethod.IMAGES);
+    }
+    //</editor-fold>
+
+    public PersonCreditList<CreditMovieBasic> getMovieCredits() {
+        return movieCredits;
     }
 
     @JsonSetter("movie_credits")
@@ -191,42 +209,24 @@ public class PersonInfo extends PersonBasic implements Serializable, AppendToRes
         addMethod(PeopleMethod.MOVIE_CREDITS);
     }
 
+    public List<ArtworkMedia> getTaggedImages() {
+        return taggedImages;
+    }
+
     @JsonSetter("tagged_images")
     public void setTaggedImages(WrapperGenericList<ArtworkMedia> taggedImages) {
         this.taggedImages = taggedImages.getResults();
         addMethod(PeopleMethod.TAGGED_IMAGES);
     }
 
+    public PersonCreditList<CreditTVBasic> getTvCredits() {
+        return tvCredits;
+    }
+
     @JsonSetter("tv_credits")
     public void setTvCredits(PersonCreditList<CreditTVBasic> tvCredits) {
         this.tvCredits = tvCredits;
         addMethod(PeopleMethod.TV_CREDITS);
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Getters">
-    public List<ChangeKeyItem> getChanges() {
-        return changes;
-    }
-
-    public ExternalID getExternalIDs() {
-        return externalIDs;
-    }
-
-    public List<Artwork> getImages() {
-        return images;
-    }
-
-    public PersonCreditList<CreditMovieBasic> getMovieCredits() {
-        return movieCredits;
-    }
-
-    public List<ArtworkMedia> getTaggedImages() {
-        return taggedImages;
-    }
-
-    public PersonCreditList<CreditTVBasic> getTvCredits() {
-        return tvCredits;
     }
     //</editor-fold>
 

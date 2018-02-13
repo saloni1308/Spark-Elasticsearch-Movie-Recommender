@@ -24,7 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * Compare various objects to see if the are logically the same.
- *
+ * <p>
  * Allows for some variance of the details
  *
  * @author Stuart.Boston
@@ -42,8 +42,8 @@ public class Compare {
      * Compare the MovieDB object with a title and year
      *
      * @param moviedb The moviedb object to compare too
-     * @param title The title of the movie to compare
-     * @param year The year of the movie to compare exact match
+     * @param title   The title of the movie to compare
+     * @param year    The year of the movie to compare exact match
      * @return True if there is a match, False otherwise.
      */
     public static boolean movies(final MovieInfo moviedb, final String title, final String year) {
@@ -53,11 +53,11 @@ public class Compare {
     /**
      * Compare the MovieDB object with a title and year
      *
-     * @param moviedb The moviedb object to compare too
-     * @param title The title of the movie to compare
-     * @param year The year of the movie to compare
-     * @param maxDistance The Levenshtein Distance between the two titles. 0 =
-     * exact match
+     * @param moviedb       The moviedb object to compare too
+     * @param title         The title of the movie to compare
+     * @param year          The year of the movie to compare
+     * @param maxDistance   The Levenshtein Distance between the two titles. 0 =
+     *                      exact match
      * @param caseSensitive true if the comparison is to be case sensitive
      * @return True if there is a match, False otherwise.
      */
@@ -90,10 +90,10 @@ public class Compare {
     /**
      * Compare a title with two other titles.
      *
-     * @param primaryTitle Primary title
-     * @param firstCompareTitle First title to compare with
+     * @param primaryTitle       Primary title
+     * @param firstCompareTitle  First title to compare with
      * @param secondCompareTitle Second title to compare with
-     * @param maxDistance Maximum difference between the titles
+     * @param maxDistance        Maximum difference between the titles
      * @return
      */
     private static boolean compareTitles(String primaryTitle, String firstCompareTitle, String secondCompareTitle, int maxDistance) {
@@ -109,9 +109,9 @@ public class Compare {
     /**
      * Compare the MovieDB object with a title and year, case sensitive
      *
-     * @param moviedb movieinfo
-     * @param title title
-     * @param year year
+     * @param moviedb     movieinfo
+     * @param title       title
+     * @param year        year
      * @param maxDistance maximum distance
      * @return true if matched
      */
@@ -122,8 +122,8 @@ public class Compare {
     /**
      * Compare the Levenshtein Distance between the two strings
      *
-     * @param title1 title
-     * @param title2 title
+     * @param title1   title
+     * @param title2   title
      * @param distance max distance
      */
     private static boolean compareDistance(final String title1, final String title2, int distance) {

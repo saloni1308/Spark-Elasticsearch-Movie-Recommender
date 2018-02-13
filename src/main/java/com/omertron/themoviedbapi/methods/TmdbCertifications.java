@@ -19,20 +19,21 @@
  */
 package com.omertron.themoviedbapi.methods;
 
-import com.omertron.themoviedbapi.MovieDbException;
-import com.omertron.themoviedbapi.results.ResultsMap;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.model.Certification;
+import com.omertron.themoviedbapi.results.ResultsMap;
 import com.omertron.themoviedbapi.tools.ApiUrl;
+import com.omertron.themoviedbapi.tools.HttpTools;
 import com.omertron.themoviedbapi.tools.MethodBase;
 import com.omertron.themoviedbapi.tools.MethodSub;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Certification Methods

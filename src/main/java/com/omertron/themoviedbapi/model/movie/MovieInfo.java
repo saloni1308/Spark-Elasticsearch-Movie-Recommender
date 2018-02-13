@@ -19,9 +19,6 @@
  */
 package com.omertron.themoviedbapi.model.movie;
 
-import com.omertron.themoviedbapi.model.media.Video;
-import com.omertron.themoviedbapi.model.media.Translation;
-import com.omertron.themoviedbapi.model.media.AlternativeTitle;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.omertron.themoviedbapi.enumeration.MovieMethod;
@@ -32,20 +29,17 @@ import com.omertron.themoviedbapi.model.Language;
 import com.omertron.themoviedbapi.model.artwork.Artwork;
 import com.omertron.themoviedbapi.model.change.ChangeKeyItem;
 import com.omertron.themoviedbapi.model.collection.Collection;
-import com.omertron.themoviedbapi.model.keyword.Keyword;
-import com.omertron.themoviedbapi.model.list.UserList;
 import com.omertron.themoviedbapi.model.credits.MediaCreditCast;
 import com.omertron.themoviedbapi.model.credits.MediaCreditCrew;
+import com.omertron.themoviedbapi.model.keyword.Keyword;
+import com.omertron.themoviedbapi.model.list.UserList;
+import com.omertron.themoviedbapi.model.media.AlternativeTitle;
 import com.omertron.themoviedbapi.model.media.MediaCreditList;
+import com.omertron.themoviedbapi.model.media.Translation;
+import com.omertron.themoviedbapi.model.media.Video;
 import com.omertron.themoviedbapi.model.review.Review;
-import com.omertron.themoviedbapi.results.WrapperAlternativeTitles;
-import com.omertron.themoviedbapi.results.WrapperChanges;
-import com.omertron.themoviedbapi.results.WrapperGenericList;
-import com.omertron.themoviedbapi.results.WrapperImages;
-import com.omertron.themoviedbapi.results.WrapperMovieKeywords;
-import com.omertron.themoviedbapi.results.WrapperReleaseInfo;
-import com.omertron.themoviedbapi.results.WrapperTranslations;
-import com.omertron.themoviedbapi.results.WrapperVideos;
+import com.omertron.themoviedbapi.results.*;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -60,7 +54,8 @@ import java.util.Set;
 public class MovieInfo extends MovieBasic implements Serializable, Identification, AppendToResponse<MovieMethod> {
 
     private static final long serialVersionUID = 100L;
-
+    // AppendToResponse
+    private final Set<MovieMethod> methods = EnumSet.noneOf(MovieMethod.class);
     @JsonProperty("belongs_to_collection")
     private Collection belongsToCollection;
     @JsonProperty("budget")
@@ -83,8 +78,6 @@ public class MovieInfo extends MovieBasic implements Serializable, Identificatio
     private String tagline;
     @JsonProperty("status")
     private String status;
-    // AppendToResponse
-    private final Set<MovieMethod> methods = EnumSet.noneOf(MovieMethod.class);
     // AppendToResponse Properties
     private List<AlternativeTitle> alternativeTitles = Collections.emptyList();
     private MediaCreditList credits = new MediaCreditList();
@@ -103,86 +96,86 @@ public class MovieInfo extends MovieBasic implements Serializable, Identificatio
         return belongsToCollection;
     }
 
-    public long getBudget() {
-        return budget;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public String getHomepage() {
-        return homepage;
-    }
-
-    public String getImdbID() {
-        return imdbID;
-    }
-
-    public List<ProductionCompany> getProductionCompanies() {
-        return productionCompanies;
-    }
-
-    public List<ProductionCountry> getProductionCountries() {
-        return productionCountries;
-    }
-
-    public int getRuntime() {
-        return runtime;
-    }
-
-    public List<Language> getSpokenLanguages() {
-        return spokenLanguages;
-    }
-
-    public String getTagline() {
-        return tagline;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-    // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="Setter methods">
     public void setBelongsToCollection(Collection belongsToCollection) {
         this.belongsToCollection = belongsToCollection;
+    }
+
+    public long getBudget() {
+        return budget;
     }
 
     public void setBudget(long budget) {
         this.budget = budget;
     }
 
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+
+    public String getHomepage() {
+        return homepage;
     }
 
     public void setHomepage(String homepage) {
         this.homepage = homepage;
     }
 
+    public String getImdbID() {
+        return imdbID;
+    }
+
     public void setImdbID(String imdbID) {
         this.imdbID = imdbID;
     }
 
+    public List<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+    // </editor-fold>
+
     public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
         this.productionCompanies = productionCompanies;
+    }
+
+    public List<ProductionCountry> getProductionCountries() {
+        return productionCountries;
     }
 
     public void setProductionCountries(List<ProductionCountry> productionCountries) {
         this.productionCountries = productionCountries;
     }
 
+    public int getRuntime() {
+        return runtime;
+    }
+
     public void setRuntime(int runtime) {
         this.runtime = runtime;
+    }
+
+    public List<Language> getSpokenLanguages() {
+        return spokenLanguages;
     }
 
     public void setSpokenLanguages(List<Language> spokenLanguages) {
         this.spokenLanguages = spokenLanguages;
     }
 
+    public String getTagline() {
+        return tagline;
+    }
+
     public void setTagline(String tagline) {
         this.tagline = tagline;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setStatus(String status) {
@@ -193,6 +186,13 @@ public class MovieInfo extends MovieBasic implements Serializable, Identificatio
     //<editor-fold defaultstate="collapsed" desc="AppendToResponse Getters">
     public List<AlternativeTitle> getAlternativeTitles() {
         return alternativeTitles;
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Setters">
+    @JsonSetter("alternative_titles")
+    public void setAlternativeTitles(WrapperAlternativeTitles alternativeTitles) {
+        this.alternativeTitles = alternativeTitles.getTitles();
+        addMethod(MovieMethod.ALTERNATIVE_TITLES);
     }
 
     public List<MediaCreditCast> getCast() {
@@ -207,56 +207,14 @@ public class MovieInfo extends MovieBasic implements Serializable, Identificatio
         return images;
     }
 
-    public List<Keyword> getKeywords() {
-        return keywords;
-    }
-
-    public List<ReleaseInfo> getReleases() {
-        return releases;
-    }
-
-    public List<Video> getVideos() {
-        return videos;
-    }
-
-    public List<Translation> getTranslations() {
-        return translations;
-    }
-
-    public List<MovieInfo> getSimilarMovies() {
-        return similarMovies;
-    }
-
-    public List<UserList> getLists() {
-        return lists;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public List<ChangeKeyItem> getChanges() {
-        return changes;
-    }
-    // </editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Setters">
-    @JsonSetter("alternative_titles")
-    public void setAlternativeTitles(WrapperAlternativeTitles alternativeTitles) {
-        this.alternativeTitles = alternativeTitles.getTitles();
-        addMethod(MovieMethod.ALTERNATIVE_TITLES);
-    }
-
-    @JsonSetter("credits")
-    public void setCredits(MediaCreditList credits) {
-        this.credits = credits;
-        addMethod(MovieMethod.CREDITS);
-    }
-
     @JsonSetter("images")
     public void setImages(WrapperImages images) {
         this.images = images.getAll();
         addMethod(MovieMethod.IMAGES);
+    }
+
+    public List<Keyword> getKeywords() {
+        return keywords;
     }
 
     @JsonSetter("keywords")
@@ -265,16 +223,29 @@ public class MovieInfo extends MovieBasic implements Serializable, Identificatio
         addMethod(MovieMethod.KEYWORDS);
     }
 
+    public List<ReleaseInfo> getReleases() {
+        return releases;
+    }
+
     @JsonSetter("releases")
     public void setReleases(WrapperReleaseInfo releases) {
         this.releases = releases.getCountries();
         addMethod(MovieMethod.RELEASES);
     }
 
+    public List<Video> getVideos() {
+        return videos;
+    }
+
     @JsonSetter("videos")
     public void setVideos(WrapperVideos trailers) {
         this.videos = trailers.getVideos();
         addMethod(MovieMethod.VIDEOS);
+    }
+    // </editor-fold>
+
+    public List<Translation> getTranslations() {
+        return translations;
     }
 
     @JsonSetter("translations")
@@ -283,10 +254,18 @@ public class MovieInfo extends MovieBasic implements Serializable, Identificatio
         addMethod(MovieMethod.TRANSLATIONS);
     }
 
+    public List<MovieInfo> getSimilarMovies() {
+        return similarMovies;
+    }
+
     @JsonSetter("similar")
     public void setSimilarMovies(WrapperGenericList<MovieInfo> similarMovies) {
         this.similarMovies = similarMovies.getResults();
         addMethod(MovieMethod.SIMILAR);
+    }
+
+    public List<UserList> getLists() {
+        return lists;
     }
 
     @JsonSetter("lists")
@@ -295,15 +274,29 @@ public class MovieInfo extends MovieBasic implements Serializable, Identificatio
         addMethod(MovieMethod.LISTS);
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
     @JsonSetter("reviews")
     public void setReviews(WrapperGenericList<Review> reviews) {
         this.reviews = reviews.getResults();
         addMethod(MovieMethod.REVIEWS);
     }
 
+    public List<ChangeKeyItem> getChanges() {
+        return changes;
+    }
+
     @JsonSetter("changes")
     public void setChanges(WrapperChanges changes) {
         this.changes = changes.getChangedItems();
+    }
+
+    @JsonSetter("credits")
+    public void setCredits(MediaCreditList credits) {
+        this.credits = credits;
+        addMethod(MovieMethod.CREDITS);
     }
     // </editor-fold>
 

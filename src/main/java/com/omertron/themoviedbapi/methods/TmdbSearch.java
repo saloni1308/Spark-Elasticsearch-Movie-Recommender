@@ -21,7 +21,6 @@ package com.omertron.themoviedbapi.methods;
 
 import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.enumeration.SearchType;
-import static com.omertron.themoviedbapi.methods.AbstractMethod.MAPPER;
 import com.omertron.themoviedbapi.model.collection.Collection;
 import com.omertron.themoviedbapi.model.company.Company;
 import com.omertron.themoviedbapi.model.keyword.Keyword;
@@ -30,17 +29,13 @@ import com.omertron.themoviedbapi.model.movie.MovieInfo;
 import com.omertron.themoviedbapi.model.person.PersonFind;
 import com.omertron.themoviedbapi.model.tv.TVBasic;
 import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
 import com.omertron.themoviedbapi.results.WrapperMultiSearch;
+import com.omertron.themoviedbapi.tools.*;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Search Methods
@@ -61,10 +56,10 @@ public class TmdbSearch extends AbstractMethod {
 
     /**
      * Search Companies.
-     *
+     * <p>
      * You can use this method to search for production companies that are part of TMDb. The company IDs will map to those returned
      * on movie calls.
-     *
+     * <p>
      * http://help.themoviedb.org/kb/api/search-companies
      *
      * @param query
@@ -124,22 +119,22 @@ public class TmdbSearch extends AbstractMethod {
      * Search Movies This is a good starting point to start finding movies on TMDb.
      *
      * @param query
-     * @param searchYear Limit the search to the provided year. Zero (0) will get all years
-     * @param language The language to include. Can be blank/null.
-     * @param includeAdult true or false to include adult titles in the search
-     * @param page The page of results to return. 0 to get the default (first page)
+     * @param searchYear         Limit the search to the provided year. Zero (0) will get all years
+     * @param language           The language to include. Can be blank/null.
+     * @param includeAdult       true or false to include adult titles in the search
+     * @param page               The page of results to return. 0 to get the default (first page)
      * @param primaryReleaseYear
      * @param searchType
      * @return
      * @throws MovieDbException
      */
     public ResultList<MovieInfo> searchMovie(String query,
-            Integer page,
-            String language,
-            Boolean includeAdult,
-            Integer searchYear,
-            Integer primaryReleaseYear,
-            SearchType searchType) throws MovieDbException {
+                                             Integer page,
+                                             String language,
+                                             Boolean includeAdult,
+                                             Integer searchYear,
+                                             Integer primaryReleaseYear,
+                                             SearchType searchType) throws MovieDbException {
         TmdbParameters parameters = new TmdbParameters();
         parameters.add(Param.QUERY, query);
         parameters.add(Param.PAGE, page);
@@ -158,9 +153,9 @@ public class TmdbSearch extends AbstractMethod {
 
     /**
      * Search the movie, tv show and person collections with a single query.
-     *
+     * <p>
      * Each item returned in the result array has a media_type field that maps to either movie, tv or person.
-     *
+     * <p>
      * Each mapped result is the same response you would get from each independent search
      *
      * @param query
@@ -193,7 +188,7 @@ public class TmdbSearch extends AbstractMethod {
 
     /**
      * This is a good starting point to start finding people on TMDb.
-     *
+     * <p>
      * The idea is to be a quick and light method so you can iterate through people quickly.
      *
      * @param query

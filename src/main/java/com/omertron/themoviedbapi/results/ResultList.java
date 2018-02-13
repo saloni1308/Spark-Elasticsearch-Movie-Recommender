@@ -24,12 +24,12 @@ import java.util.List;
 
 /**
  * List of the results from TheMovieDb
- *
+ * <p>
  * If the original request contains, or could contain, a page of results, this wrapper is returned to indicate what page was
  * returned and how many are available
  *
- * @author Stuart
  * @param <T>
+ * @author Stuart
  */
 public final class ResultList<T> extends AbstractWrapperIdPages {
 

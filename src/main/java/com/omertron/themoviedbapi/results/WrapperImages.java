@@ -22,13 +22,13 @@ package com.omertron.themoviedbapi.results;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.enumeration.ArtworkType;
 import com.omertron.themoviedbapi.model.artwork.Artwork;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
- *
  * @author Stuart
  */
 public class WrapperImages extends AbstractWrapperAll {
@@ -46,20 +46,20 @@ public class WrapperImages extends AbstractWrapperAll {
         return backdrops;
     }
 
-    public List<Artwork> getPosters() {
-        return posters;
-    }
-
-    public List<Artwork> getProfiles() {
-        return profiles;
-    }
-
     public void setBackdrops(List<Artwork> backdrops) {
         this.backdrops = backdrops;
     }
 
+    public List<Artwork> getPosters() {
+        return posters;
+    }
+
     public void setPosters(List<Artwork> posters) {
         this.posters = posters;
+    }
+
+    public List<Artwork> getProfiles() {
+        return profiles;
     }
 
     public void setProfiles(List<Artwork> profiles) {
@@ -72,7 +72,7 @@ public class WrapperImages extends AbstractWrapperAll {
 
     /**
      * Return a list of all the artwork with their types.
-     *
+     * <p>
      * Leaving the parameters blank will return all types
      *
      * @param artworkList

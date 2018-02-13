@@ -19,13 +19,14 @@
  */
 package com.omertron.themoviedbapi.model.media;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.io.Serializable;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.io.Serializable;
 
 /**
  * @author Stuart
@@ -47,28 +48,28 @@ public class Translation extends AbstractJsonMapping implements Serializable {
         return englishName;
     }
 
-    public String getLanguage() {
-        return language;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
     public void setEnglishName(String englishName) {
         this.englishName = englishName;
+    }
+
+    public String getLanguage() {
+        return language;
     }
 
     public void setLanguage(String language) {
         this.language = language;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public void setCountry(String country) {

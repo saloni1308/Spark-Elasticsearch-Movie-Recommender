@@ -19,8 +19,9 @@
  */
 package com.omertron.themoviedbapi.model.authentication;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+
 import java.io.Serializable;
 
 public class TokenSession extends AbstractJsonMapping implements Serializable {
@@ -43,44 +44,44 @@ public class TokenSession extends AbstractJsonMapping implements Serializable {
         return sessionId;
     }
 
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public String getStatusCode() {
-        return statusCode;
-    }
-
-    public String getStatusMessage() {
-        return statusMessage;
-    }
-
-    public String getGuestSessionId() {
-        return guestSessionId;
-    }
-
-    public String getExpiresAt() {
-        return expiresAt;
-    }
-
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public Boolean getSuccess() {
+        return success;
     }
 
     public void setSuccess(Boolean success) {
         this.success = success;
     }
 
+    public String getStatusCode() {
+        return statusCode;
+    }
+
     public void setStatusCode(String statusCode) {
         this.statusCode = statusCode;
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
     }
 
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
     }
 
+    public String getGuestSessionId() {
+        return guestSessionId;
+    }
+
     public void setGuestSessionId(String guestSessionId) {
         this.guestSessionId = guestSessionId;
+    }
+
+    public String getExpiresAt() {
+        return expiresAt;
     }
 
     public void setExpiresAt(String expiresAt) {

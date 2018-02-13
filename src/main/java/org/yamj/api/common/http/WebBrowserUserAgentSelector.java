@@ -96,7 +96,7 @@ public class WebBrowserUserAgentSelector implements IUserAgentSelector {
         USER_AGENTS.add("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Trident/5.0; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.5.30729; .NET CLR 3.0.30729; FDM; .NET4.0C; .NET4.0E; chromeframe/11.0.696.57)");
         USER_AGENTS.add("Mozilla/4.0 (compatible; U; MSIE 9.0; WIndows NT 9.0; en-US)");
         USER_AGENTS.add("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; FunWebProducts)");
-        
+
         // FIREFOX
         USER_AGENTS.add("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0");
         USER_AGENTS.add("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0");
@@ -141,7 +141,7 @@ public class WebBrowserUserAgentSelector implements IUserAgentSelector {
         USER_AGENTS.add("Mozilla/5.0 (Windows NT 6.2; WOW64; rv:15.0) Gecko/20120910144328 Firefox/15.0.2");
         USER_AGENTS.add("Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:15.0) Gecko/20100101 Firefox/15.0.1");
         USER_AGENTS.add("Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:15.0) Gecko/20121011 Firefox/15.0.1");
-                        
+
         // CHROME
         USER_AGENTS.add("Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.17 Safari/537.36");
         USER_AGENTS.add("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36");
@@ -286,8 +286,8 @@ public class WebBrowserUserAgentSelector implements IUserAgentSelector {
         USER_AGENTS.add("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; ca-es) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");
         USER_AGENTS.add("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; zh-tw) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");
         USER_AGENTS.add("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; ja-jp) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");
-        USER_AGENTS.add("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; it-it) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");        
-        
+        USER_AGENTS.add("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; it-it) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16");
+
         // OPERA
         USER_AGENTS.add("Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14");
         USER_AGENTS.add("Mozilla/5.0 (Windows NT 6.0; rv:2.0) Gecko/20100101 Firefox/4.0 Opera 12.14");
@@ -425,7 +425,7 @@ public class WebBrowserUserAgentSelector implements IUserAgentSelector {
         USER_AGENTS.add("Opera/9.80 (Windows NT 6.0; U; de) Presto/2.2.15 Version/10.00");
         USER_AGENTS.add("Opera/9.80 (Windows NT 5.2; U; en) Presto/2.2.15 Version/10.00");
         USER_AGENTS.add("Opera/9.80 (Windows NT 5.1; U; zh-cn) Presto/2.2.15 Version/10.00");
-        USER_AGENTS.add("Opera/9.80 (Windows NT 5.1; U; ru) Presto/2.2.15 Version/10.00");     
+        USER_AGENTS.add("Opera/9.80 (Windows NT 5.1; U; ru) Presto/2.2.15 Version/10.00");
     }
 
     /**

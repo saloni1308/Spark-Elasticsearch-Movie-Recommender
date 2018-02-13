@@ -21,22 +21,22 @@ package com.omertron.themoviedbapi.methods;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.omertron.themoviedbapi.MovieDbException;
-import static com.omertron.themoviedbapi.methods.AbstractMethod.MAPPER;
 import com.omertron.themoviedbapi.model.config.Configuration;
 import com.omertron.themoviedbapi.model.config.JobDepartment;
 import com.omertron.themoviedbapi.results.ResultList;
 import com.omertron.themoviedbapi.results.ResultsMap;
+import com.omertron.themoviedbapi.results.WrapperConfig;
+import com.omertron.themoviedbapi.results.WrapperJobList;
 import com.omertron.themoviedbapi.tools.ApiUrl;
 import com.omertron.themoviedbapi.tools.HttpTools;
 import com.omertron.themoviedbapi.tools.MethodBase;
 import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.results.WrapperConfig;
-import com.omertron.themoviedbapi.results.WrapperJobList;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * Class to hold the Configuration Methods

@@ -19,12 +19,13 @@
  */
 package com.omertron.themoviedbapi.model.person;
 
-import com.omertron.themoviedbapi.model.credits.CreditBasic;
-import com.omertron.themoviedbapi.model.credits.CreditTVBasic;
-import com.omertron.themoviedbapi.model.credits.CreditMovieBasic;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.omertron.themoviedbapi.model.credits.CreditBasic;
+import com.omertron.themoviedbapi.model.credits.CreditMovieBasic;
+import com.omertron.themoviedbapi.model.credits.CreditTVBasic;
+
 import java.util.List;
 
 /**
@@ -41,8 +42,8 @@ public class PersonCreditsMixIn {
             defaultImpl = CreditBasic.class
     )
     @JsonSubTypes({
-        @JsonSubTypes.Type(value = CreditMovieBasic.class, name = "movie"),
-        @JsonSubTypes.Type(value = CreditTVBasic.class, name = "tv")
+            @JsonSubTypes.Type(value = CreditMovieBasic.class, name = "movie"),
+            @JsonSubTypes.Type(value = CreditTVBasic.class, name = "tv")
     })
     @JsonSetter("cast")
     public void setCast(List<CreditBasic> cast) {
@@ -56,8 +57,8 @@ public class PersonCreditsMixIn {
             defaultImpl = CreditBasic.class
     )
     @JsonSubTypes({
-        @JsonSubTypes.Type(value = CreditMovieBasic.class, name = "movie"),
-        @JsonSubTypes.Type(value = CreditTVBasic.class, name = "tv")
+            @JsonSubTypes.Type(value = CreditMovieBasic.class, name = "movie"),
+            @JsonSubTypes.Type(value = CreditTVBasic.class, name = "tv")
     })
     @JsonSetter("crew")
     public void setCrew(List<CreditBasic> crew) {

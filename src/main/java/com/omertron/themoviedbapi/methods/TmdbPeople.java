@@ -23,31 +23,22 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.enumeration.ArtworkType;
-import static com.omertron.themoviedbapi.methods.AbstractMethod.MAPPER;
 import com.omertron.themoviedbapi.model.artwork.Artwork;
 import com.omertron.themoviedbapi.model.artwork.ArtworkMedia;
 import com.omertron.themoviedbapi.model.change.ChangeKeyItem;
 import com.omertron.themoviedbapi.model.credits.CreditBasic;
 import com.omertron.themoviedbapi.model.credits.CreditMovieBasic;
 import com.omertron.themoviedbapi.model.credits.CreditTVBasic;
-import com.omertron.themoviedbapi.model.person.ExternalID;
-import com.omertron.themoviedbapi.model.person.PersonCreditList;
-import com.omertron.themoviedbapi.model.person.PersonCreditsMixIn;
-import com.omertron.themoviedbapi.model.person.PersonFind;
-import com.omertron.themoviedbapi.model.person.PersonInfo;
+import com.omertron.themoviedbapi.model.person.*;
 import com.omertron.themoviedbapi.results.ResultList;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
 import com.omertron.themoviedbapi.results.WrapperImages;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
-import java.io.IOException;
-import java.net.URL;
+import com.omertron.themoviedbapi.tools.*;
 import org.apache.commons.lang3.StringUtils;
 import org.yamj.api.common.exception.ApiExceptionType;
+
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Class to hold the People Methods
@@ -123,10 +114,10 @@ public class TmdbPeople extends AbstractMethod {
 
     /**
      * Get the TV credits for a specific person id.
-     *
+     * <p>
      * To get the expanded details for each record, call the /credit method with
      * the provided credit_id.
-     *
+     * <p>
      * This will provide details about which episode and/or season the credit is
      * for.
      *
@@ -154,10 +145,10 @@ public class TmdbPeople extends AbstractMethod {
 
     /**
      * Get the combined (movie and TV) credits for a specific person id.
-     *
+     * <p>
      * To get the expanded details for each TV record, call the /credit method
      * with the provided credit_id.
-     *
+     * <p>
      * This will provide details about which episode and/or season the credit is
      * for.
      *
@@ -232,7 +223,7 @@ public class TmdbPeople extends AbstractMethod {
 
     /**
      * Get the images that have been tagged with a specific person id.
-     *
+     * <p>
      * We return all of the image results with a media object mapped for each
      * image.
      *
@@ -255,14 +246,14 @@ public class TmdbPeople extends AbstractMethod {
 
     /**
      * Get the changes for a specific person id.
-     *
+     * <p>
      * Changes are grouped by key, and ordered by date in descending order.
-     *
+     * <p>
      * By default, only the last 24 hours of changes are returned.
-     *
+     * <p>
      * The maximum number of days that can be returned in a single request is
      * 14.
-     *
+     * <p>
      * The language is present on fields that are translatable.
      *
      * @param personId
@@ -277,7 +268,7 @@ public class TmdbPeople extends AbstractMethod {
 
     /**
      * Get the list of popular people on The Movie Database.
-     *
+     * <p>
      * This list refreshes every day.
      *
      * @param page

@@ -22,12 +22,13 @@ package com.omertron.themoviedbapi.model.config;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
+import org.apache.commons.lang3.StringUtils;
+import org.yamj.api.common.exception.ApiExceptionType;
+
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
-import org.yamj.api.common.exception.ApiExceptionType;
 
 /**
  * @author stuart.boston
@@ -55,52 +56,52 @@ public class Configuration extends AbstractJsonMapping implements Serializable {
         return backdropSizes;
     }
 
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public List<String> getPosterSizes() {
-        return posterSizes;
-    }
-
-    public List<String> getProfileSizes() {
-        return profileSizes;
-    }
-
-    public List<String> getLogoSizes() {
-        return logoSizes;
-    }
-
-    public String getSecureBaseUrl() {
-        return secureBaseUrl;
-    }
-
-    public List<String> getStillSizes() {
-        return stillSizes;
-    }
-
     public void setBackdropSizes(List<String> backdropSizes) {
         this.backdropSizes = backdropSizes;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
 
+    public List<String> getPosterSizes() {
+        return posterSizes;
+    }
+
     public void setPosterSizes(List<String> posterSizes) {
         this.posterSizes = posterSizes;
+    }
+
+    public List<String> getProfileSizes() {
+        return profileSizes;
     }
 
     public void setProfileSizes(List<String> profileSizes) {
         this.profileSizes = profileSizes;
     }
 
+    public List<String> getLogoSizes() {
+        return logoSizes;
+    }
+
     public void setLogoSizes(List<String> logoSizes) {
         this.logoSizes = logoSizes;
     }
 
+    public String getSecureBaseUrl() {
+        return secureBaseUrl;
+    }
+
     public void setSecureBaseUrl(String secureBaseUrl) {
         this.secureBaseUrl = secureBaseUrl;
+    }
+
+    public List<String> getStillSizes() {
+        return stillSizes;
     }
 
     public void setStillSizes(List<String> stillSizes) {

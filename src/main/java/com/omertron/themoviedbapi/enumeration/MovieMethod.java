@@ -42,22 +42,11 @@ public enum MovieMethod implements AppendToResponseMethod {
     VIDEOS;
 
     /**
-     * Get the string to use in the URL
-     *
-     * @return
-     */
-    @Override
-    public String getPropertyString() {
-        return this.name().toLowerCase();
-    }
-
-    /**
      * Convert a string into an Enum type
      *
      * @param method
      * @return
      * @throws IllegalArgumentException If type is not recognised
-     *
      */
     public static MovieMethod fromString(String method) {
         if (StringUtils.isNotBlank(method)) {
@@ -68,5 +57,15 @@ public enum MovieMethod implements AppendToResponseMethod {
             }
         }
         throw new IllegalArgumentException("Method must not be null");
+    }
+
+    /**
+     * Get the string to use in the URL
+     *
+     * @return
+     */
+    @Override
+    public String getPropertyString() {
+        return this.name().toLowerCase();
     }
 }

@@ -19,10 +19,10 @@
  */
 package com.omertron.themoviedbapi.results;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.omertron.themoviedbapi.interfaces.Identification;
 import com.omertron.themoviedbapi.interfaces.WrapperDates;
 import com.omertron.themoviedbapi.interfaces.WrapperPages;
-import com.omertron.themoviedbapi.interfaces.Identification;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Base class for the wrappers

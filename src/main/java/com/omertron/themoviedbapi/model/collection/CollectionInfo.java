@@ -22,8 +22,8 @@ package com.omertron.themoviedbapi.model.collection;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.omertron.themoviedbapi.interfaces.Identification;
 import com.omertron.themoviedbapi.model.AbstractJsonMapping;
-import java.io.Serializable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,29 +51,13 @@ public class CollectionInfo extends AbstractJsonMapping implements Serializable,
         return backdropPath;
     }
 
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+
     @Override
     public int getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public List<Collection> getParts() {
-        return parts;
-    }
-
-    public String getPosterPath() {
-        return posterPath;
-    }
-
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
     }
 
     @Override
@@ -81,16 +65,32 @@ public class CollectionInfo extends AbstractJsonMapping implements Serializable,
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOverview() {
+        return overview;
     }
 
     public void setOverview(String overview) {
         this.overview = overview;
     }
 
+    public List<Collection> getParts() {
+        return parts;
+    }
+
     public void setParts(List<Collection> parts) {
         this.parts = parts;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
     }
 
     public void setPosterPath(String posterPath) {

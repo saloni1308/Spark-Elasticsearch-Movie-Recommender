@@ -31,6 +31,7 @@ import com.omertron.themoviedbapi.model.media.Video;
 import com.omertron.themoviedbapi.model.person.ExternalID;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
 import com.omertron.themoviedbapi.results.WrapperImages;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -45,15 +46,14 @@ import java.util.Set;
 public class TVEpisodeInfo extends TVEpisodeBasic implements Serializable, AppendToResponse<TVEpisodeMethod> {
 
     private static final long serialVersionUID = 100L;
-
+    // AppendToResponse
+    private final Set<TVEpisodeMethod> methods = EnumSet.noneOf(TVEpisodeMethod.class);
     @JsonProperty("crew")
     private List<MediaCreditCrew> crew;
     @JsonProperty("guest_stars")
     private List<MediaCreditCast> guestStars;
     @JsonProperty("production_code")
     private String productionCode;
-    // AppendToResponse
-    private final Set<TVEpisodeMethod> methods = EnumSet.noneOf(TVEpisodeMethod.class);
     // AppendToResponse Properties
     private MediaCreditList credits = new MediaCreditList();
     private ExternalID externalIDs = new ExternalID();
@@ -95,6 +95,11 @@ public class TVEpisodeInfo extends TVEpisodeBasic implements Serializable, Appen
         return methods.contains(method);
     }
 
+    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Getters">
+    public MediaCreditList getCredits() {
+        return credits;
+    }
+
     //<editor-fold defaultstate="collapsed" desc="AppendToResponse Setters">
     @JsonSetter("credits")
     public void setCredits(MediaCreditList credits) {
@@ -102,10 +107,19 @@ public class TVEpisodeInfo extends TVEpisodeBasic implements Serializable, Appen
         addMethod(TVEpisodeMethod.CREDITS);
     }
 
+    public ExternalID getExternalIDs() {
+        return externalIDs;
+    }
+
     @JsonSetter("external_ids")
     public void setExternalIDs(ExternalID externalIDs) {
         this.externalIDs = externalIDs;
         addMethod(TVEpisodeMethod.EXTERNAL_IDS);
+    }
+    //</editor-fold>
+
+    public List<Artwork> getImages() {
+        return images;
     }
 
     @JsonSetter("images")
@@ -114,28 +128,14 @@ public class TVEpisodeInfo extends TVEpisodeBasic implements Serializable, Appen
         addMethod(TVEpisodeMethod.IMAGES);
     }
 
+    public List<Video> getVideos() {
+        return videos;
+    }
+
     @JsonSetter("videos")
     public void setVideos(WrapperGenericList<Video> videos) {
         this.videos = videos.getResults();
         addMethod(TVEpisodeMethod.VIDEOS);
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="AppendToResponse Getters">
-    public MediaCreditList getCredits() {
-        return credits;
-    }
-
-    public ExternalID getExternalIDs() {
-        return externalIDs;
-    }
-
-    public List<Artwork> getImages() {
-        return images;
-    }
-
-    public List<Video> getVideos() {
-        return videos;
     }
     //</editor-fold>
 

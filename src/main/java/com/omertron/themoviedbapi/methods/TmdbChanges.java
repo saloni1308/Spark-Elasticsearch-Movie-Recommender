@@ -22,13 +22,9 @@ package com.omertron.themoviedbapi.methods;
 import com.omertron.themoviedbapi.MovieDbException;
 import com.omertron.themoviedbapi.model.change.ChangeListItem;
 import com.omertron.themoviedbapi.results.ResultList;
-import com.omertron.themoviedbapi.tools.ApiUrl;
-import com.omertron.themoviedbapi.tools.HttpTools;
-import com.omertron.themoviedbapi.tools.MethodBase;
-import com.omertron.themoviedbapi.tools.MethodSub;
-import com.omertron.themoviedbapi.tools.Param;
-import com.omertron.themoviedbapi.tools.TmdbParameters;
 import com.omertron.themoviedbapi.results.WrapperGenericList;
+import com.omertron.themoviedbapi.tools.*;
+
 import java.net.URL;
 
 /**
@@ -50,13 +46,13 @@ public class TmdbChanges extends AbstractMethod {
 
     /**
      * Get a list of Media IDs that have been edited.
-     *
+     * <p>
      * You can then use the movie/TV/person changes API to get the actual data that has been changed.
      *
-     * @param method The method base to get
+     * @param method    The method base to get
      * @param page
      * @param startDate the start date of the changes, optional
-     * @param endDate the end date of the changes, optional
+     * @param endDate   the end date of the changes, optional
      * @return List of changed movie
      * @throws MovieDbException
      */

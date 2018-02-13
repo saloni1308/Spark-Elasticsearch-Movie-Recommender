@@ -25,6 +25,7 @@ import com.omertron.themoviedbapi.model.person.PersonFind;
 import com.omertron.themoviedbapi.model.tv.TVBasic;
 import com.omertron.themoviedbapi.model.tv.TVEpisodeBasic;
 import com.omertron.themoviedbapi.model.tv.TVSeasonBasic;
+
 import java.io.Serializable;
 import java.util.List;
 

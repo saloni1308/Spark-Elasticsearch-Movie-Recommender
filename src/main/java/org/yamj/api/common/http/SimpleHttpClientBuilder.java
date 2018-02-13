@@ -24,11 +24,13 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.impl.client.*;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.SystemDefaultCredentialsProvider;
 
 /**
  * Builder class to create a CloseableHttpClient
- *
  */
 public class SimpleHttpClientBuilder {
 
@@ -42,6 +44,10 @@ public class SimpleHttpClientBuilder {
     private int proxyPort = 0;
     private String proxyUsername;
     private String proxyPassword;
+
+    private static boolean isNotBlank(final String test) {
+        return test != null && !test.isEmpty();
+    }
 
     /**
      * Set the maximum number of connections
@@ -197,9 +203,5 @@ public class SimpleHttpClientBuilder {
 
         // build the http client
         return builder.build();
-    }
-
-    private static boolean isNotBlank(final String test) {
-        return test != null && !test.isEmpty();
     }
 }

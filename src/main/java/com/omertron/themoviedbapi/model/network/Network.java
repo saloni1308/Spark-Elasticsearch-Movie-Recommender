@@ -21,6 +21,7 @@ package com.omertron.themoviedbapi.model.network;
 
 import com.omertron.themoviedbapi.interfaces.Identification;
 import com.omertron.themoviedbapi.model.AbstractIdName;
+
 import java.io.Serializable;
 
 /**

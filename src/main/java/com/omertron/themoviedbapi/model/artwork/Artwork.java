@@ -19,13 +19,14 @@
  */
 package com.omertron.themoviedbapi.model.artwork;
 
-import com.omertron.themoviedbapi.model.AbstractJsonMapping;
-import com.omertron.themoviedbapi.enumeration.ArtworkType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.io.Serializable;
+import com.omertron.themoviedbapi.enumeration.ArtworkType;
+import com.omertron.themoviedbapi.model.AbstractJsonMapping;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.io.Serializable;
 
 /**
  * The artwork type information
@@ -132,13 +133,13 @@ public class Artwork extends AbstractJsonMapping implements Serializable {
         return artworkType;
     }
 
-    public void setArtworkType(ArtworkType artworkType) {
-        this.artworkType = artworkType;
-    }
-
     @JsonSetter("image_type")
     public void setArtworkType(String artworkType) {
         this.artworkType = ArtworkType.fromString(artworkType);
+    }
+
+    public void setArtworkType(ArtworkType artworkType) {
+        this.artworkType = artworkType;
     }
 
     @Override
