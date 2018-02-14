@@ -38,7 +38,7 @@ public class Recommender implements Serializable {
         alsModel.setVersion(version);
         alsModel.setTimestamp(Instant.now().getEpochSecond());
         alsModel.setMovieId(model._1().toString());
-        alsModel.setFeatures(Arrays.toString(model._2()).replace(",", "|").replace("[", "").replace("]", ""));
+        alsModel.setFactor(Arrays.toString(model._2()).replace(",", "|").replace("[", "").replace("]", ""));
         return alsModel;
     }
 

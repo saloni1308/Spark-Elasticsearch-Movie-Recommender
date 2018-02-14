@@ -24,13 +24,13 @@ import java.util.Collections;
 import java.util.Map;
 
 public class Main implements Serializable {
-    private final static String RESOURCES_PATH = "C:\\Users\\RajatKhandelwal\\IdeaProjects\\sparkes.recommender.movies\\resources\\";
+    private final static String RESOURCES_PATH = ".\\resources\\";
     static SparkConf conf;
     static JavaSparkContext jsc;
     static SparkSession sparkSession;
     static SparkContext sc;
     static RestClient client;
-    private final String DATA_SET_PATH = "C:\\Users\\RajatKhandelwal\\IdeaProjects\\sparkes.recommender.movies\\resources\\datasets\\ml-latest-small\\";
+    private final String DATA_SET_PATH = ".\\resources\\datasets\\ml-latest-small\\";
 
 
     Dataset<Row> movies;
@@ -162,7 +162,7 @@ public class Main implements Serializable {
         // train model using ALS algorithm
         recommender_system.trainModelByAls(als_data);
 
-        // fetch item features from the model
+        // fetch item factor from the model
         JavaRDD<Tuple2<Integer, double[]>> factors_ratings = (JavaRDD<Tuple2<Integer, double[]>>) (JavaRDD<?>) recommender_system.model.productFeatures().toJavaRDD();
 
         JavaRDD<Tuple2<Integer, double[]>> users_feature = (JavaRDD<Tuple2<Integer, double[]>>) (JavaRDD<?>) recommender_system.model.userFeatures().toJavaRDD();
@@ -172,7 +172,7 @@ public class Main implements Serializable {
 
         driver.user_features = users_feature.map(objectTuple -> recommender_system.getModelVector(objectTuple, recommender_system.model.formatVersion()));
 
-        // combine movie data with link and features
+        // combine movie data with link and factor
         driver.transformMovieData();
 
         // save data to ES
@@ -191,7 +191,7 @@ public class Main implements Serializable {
         final Recommender recommender_system = new Recommender();
         driver.initializeSession();
 
-        final boolean isFirstRun = false;
+        final boolean isFirstRun = true;
         if (isFirstRun) {
             Main.initialSetup(driver, recommender_system);
         }
@@ -205,12 +205,20 @@ public class Main implements Serializable {
 
 
         JavaRDD<Map<String, Object>> movie_query = driver.getMovieFromES(movieId, es_index, es_index_mapping);
-        boolean factorsAvailable = movie_query.first().containsKey("feature");
-        //System.out.println(movie_query.first().keySet());
+        boolean factorsAvailable = movie_query.first().containsKey("factor");
+        System.out.println(movie_query.first().keySet());
         if (!factorsAvailable) {
             System.out.println("Cannot find similar movies..");
         } else {
-            driver.getMoviesSimilarToGivenMovie(movieId, number_of_recommendation, es_index);
+            StringBuilder feature = new StringBuilder(movie_query.first().get("factor").toString());
+            String query_vec = feature.toString();
+            sparkes.recommender.movies.QueryBuilder queryBuilder = new sparkes.recommender.movies.QueryBuilder();
+            String query = queryBuilder.getMovieRecommenderQuery("*", query_vec, true);
+            JavaRDD<Map<String, Object>> similarQueryResult = JavaEsSpark.esRDD(jsc,  "i_movies/movies" , query).values();
+            /*similarQueryResult.collect().stream().forEach(results -> {
+                System.out.println(results.toString());
+            });*/
+            //driver.getMoviesSimilarToGivenMovie(movieId, number_of_recommendation, es_index);
         }
 
         //close elasticsearch client

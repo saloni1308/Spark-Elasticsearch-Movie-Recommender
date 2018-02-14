@@ -11,16 +11,16 @@ public class Movie {
     private List<String> genres_list;
     private String imdbId;
     private String tmdbId;
-    private String features;
+    private String factor;
     private long timestamp;
     private String version;
 
-    public String getFeatures() {
-        return features;
+    public String getFactor() {
+        return factor;
     }
 
-    public void setFeatures(final String features) {
-        this.features = features;
+    public void setFactor(final String factor) {
+        this.factor = factor;
     }
 
     public String getVersion() {

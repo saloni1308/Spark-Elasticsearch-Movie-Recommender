@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 
 public class QueryBuilder {
 
-    private String getMovieRecommenderQuery(final String query, final String query_vector, final boolean cosine) {
+    String getMovieRecommenderQuery(final String query, final String query_vector, final boolean cosine) {
 
         JSONObject generatedQuery = new JSONObject();
         JSONObject query_top = new JSONObject();
@@ -14,7 +14,7 @@ public class QueryBuilder {
         JSONObject query_json = new JSONObject();
         JSONObject script = new JSONObject();
         JSONObject params = new JSONObject();
-        params.put("field", "@model.factor");
+        params.put("field", "factor");
         params.put("vector", query_vector);
         params.put("cosine", cosine);
         script.put("params", params);
@@ -28,6 +28,7 @@ public class QueryBuilder {
         function_score.put("boost_mode", "replace");
         query_top.put("function_score", function_score);
         generatedQuery.put("query", query_top);
-        return generatedQuery.toJSONString();
+        System.out.println(generatedQuery.toString());
+        return generatedQuery.toString();
     }
 }

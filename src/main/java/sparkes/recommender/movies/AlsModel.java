@@ -3,17 +3,17 @@ package sparkes.recommender.movies;
 import java.io.Serializable;
 
 public class AlsModel implements Serializable {
-    String features;
+    String factor;
     String version;
     long timestamp;
     String movieId;
 
-    public String getFeatures() {
-        return features;
+    public String getFactor() {
+        return factor;
     }
 
-    public void setFeatures(final String features) {
-        this.features = features;
+    public void setFactor(final String factor) {
+        this.factor = factor;
     }
 
     public String getVersion() {
