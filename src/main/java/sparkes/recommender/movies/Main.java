@@ -215,9 +215,9 @@ public class Main implements Serializable {
             sparkes.recommender.movies.QueryBuilder queryBuilder = new sparkes.recommender.movies.QueryBuilder();
             String query = queryBuilder.getMovieRecommenderQuery("*", query_vec, true);
             JavaRDD<Map<String, Object>> similarQueryResult = JavaEsSpark.esRDD(jsc,  "i_movies/movies" , query).values();
-            /*similarQueryResult.collect().stream().forEach(results -> {
+            similarQueryResult.collect().forEach(results -> {
                 System.out.println(results.toString());
-            });*/
+            });
             //driver.getMoviesSimilarToGivenMovie(movieId, number_of_recommendation, es_index);
         }
 

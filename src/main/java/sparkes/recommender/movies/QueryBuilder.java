@@ -29,6 +29,7 @@ public class QueryBuilder {
         query_top.put("function_score", function_score);
         generatedQuery.put("query", query_top);
         System.out.println(generatedQuery.toString());
-        return generatedQuery.toString();
+        return "{\n    \"query\": {\n        \"function_score\": {\n            \"query\" : {\n                \"query_string\": {\n                    \"query\":\"" + query + "\"\n                }\n            },\n            \"script_score\": {\n                \"script\": {\n                        \"inline\": \"payload_vector_score\",\n                        \"lang\": \"native\",\n                        \"params\": {\n                            \"field\": \"factor\",\n                            \"vector\":\"" + query_vector + "\",\n                            \"cosine\" :" + cosine + "\n                        }\n                    }\n            },\n            \"boost_mode\": \"replace\"\n        }\n    }\n} ";
+        //  return generatedQuery.toString();
     }
 }

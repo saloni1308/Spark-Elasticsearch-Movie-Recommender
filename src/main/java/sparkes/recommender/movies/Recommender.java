@@ -24,13 +24,14 @@ public class Recommender implements Serializable {
     }
 
     void trainModelByAls(JavaRDD<Rating> als_data) {
-        als = new ALS();
+        /*als = new ALS();
         als.setLambda(0.1);
         als.setAlpha(0.1);
         als.setIterations(10);
         als.setRank(10);
         als.setSeed(42);
-        model = als.run(als_data);
+     //   model = als.run(als_data);*/
+        model = ALS.train(als_data.rdd(), 10, 10, 0.1);
     }
 
     AlsModel getModelVector(Tuple2<Integer, double[]> model, String version) {
