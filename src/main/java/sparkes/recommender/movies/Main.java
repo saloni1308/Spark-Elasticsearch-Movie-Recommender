@@ -40,7 +40,7 @@ public class Main implements Serializable {
     Dataset<Row> movies_filter;
     Dataset<MovieRating> ratings_filter;
     Dataset<Movie> movieJoin;
-    JavaRDD<AlsModel> features_vector;
+    JavaRDD<FeatureVector> features_vector;
     JavaRDD<AlsModel> user_features;
 
 
@@ -81,9 +81,9 @@ public class Main implements Serializable {
     }
 
     private void transformMovieData() {
+        Encoder<FeatureVector> featureEncoder = Encoders.bean(FeatureVector.class);
+        Dataset<FeatureVector> featureData = sparkSession.createDataset(features_vector.rdd(), featureEncoder);
         Encoder<Movie> movieEncoder = Encoders.bean(Movie.class);
-        Encoder<AlsModel> featureEncoder = Encoders.bean(AlsModel.class);
-        Dataset<AlsModel> featureData = sparkSession.createDataset(features_vector.rdd(), featureEncoder);
         movieJoin = movies_filter.join(links, "movieId").join(featureData, "movieId").as(movieEncoder);
     }
 
@@ -144,13 +144,13 @@ public class Main implements Serializable {
     }
 
     private static void initialSetup(Main driver, Recommender recommender_system) {
-        driver.importData2Spark();
 
         // create mapping
         driver.createIndex("i_movies", "movies_mapping.json");
         driver.createIndex("i_rating", "rating_mapping.json");
         driver.createIndex("i_user", "users_mapping.json");
 
+        driver.importData2Spark();
 
         // remove null values
         driver.dataPreProcessing();
@@ -170,15 +170,17 @@ public class Main implements Serializable {
         // transform item feature to (id | feature | version | timestamp) format
         driver.features_vector = factors_ratings.map(objectTuple2 -> recommender_system.getModelVector(objectTuple2, recommender_system.model.formatVersion()));
 
-        driver.user_features = users_feature.map(objectTuple -> recommender_system.getModelVector(objectTuple, recommender_system.model.formatVersion()));
+        //driver.user_features = users_feature.map(objectTuple -> recommender_system.getModelVector(objectTuple, recommender_system.model.formatVersion()));
 
         // combine movie data with link and factor
         driver.transformMovieData();
 
         // save data to ES
+        System.out.println(driver.movieJoin.toJavaRDD().first().getFeatureVector().getFeatureVector().get("@model").factor);
         driver.save2ES("i_movies", "movies", driver.movieJoin.toJavaRDD());
         driver.save2ES("i_rating", "ratings", driver.ratings_filter.toJavaRDD());
         driver.save2ES("i_user", "users", driver.user_features);
+
     }
 
     public void getMoviesSimilarToGivenMovie(int movieId, int recommedationCount, String index) {

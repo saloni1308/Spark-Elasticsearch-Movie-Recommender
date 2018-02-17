@@ -6,7 +6,6 @@ public class AlsModel implements Serializable {
     String factor;
     String version;
     long timestamp;
-    String movieId;
 
     public String getFactor() {
         return factor;
@@ -30,13 +29,5 @@ public class AlsModel implements Serializable {
 
     public void setTimestamp(final long timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public String getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(final String movieId) {
-        this.movieId = movieId;
     }
 }

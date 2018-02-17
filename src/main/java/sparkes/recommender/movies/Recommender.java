@@ -10,6 +10,8 @@ import scala.Tuple2;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Recommender implements Serializable {
 
@@ -33,13 +35,17 @@ public class Recommender implements Serializable {
         model = als.run(als_data);
     }
 
-    AlsModel getModelVector(Tuple2<Integer, double[]> model, String version) {
+    FeatureVector getModelVector(Tuple2<Integer, double[]> model, String version) {
+        FeatureVector feactureVector = new FeatureVector();
         AlsModel alsModel = new AlsModel();
         alsModel.setVersion(version);
         alsModel.setTimestamp(Instant.now().getEpochSecond());
-        alsModel.setMovieId(model._1().toString());
         alsModel.setFactor(Arrays.toString(model._2()).replace(",", "|").replace("[", "").replace("]", ""));
-        return alsModel;
+        feactureVector.setMovieId(model._1().toString());
+        Map<String, AlsModel> vector = new HashMap<>();
+        vector.put("@model", alsModel);
+        feactureVector.setFeatureVector(vector);
+        return feactureVector;
     }
 
 /*    private void getSimilarMovies() {

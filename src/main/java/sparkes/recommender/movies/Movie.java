@@ -3,6 +3,10 @@ package sparkes.recommender.movies;
 import java.util.Arrays;
 import java.util.List;
 
+import scala.collection.immutable.HashMap;
+import scala.collection.immutable.Map;
+import scala.collection.immutable.Vector;
+
 public class Movie {
 
     private String movieId;
@@ -11,34 +15,7 @@ public class Movie {
     private List<String> genres_list;
     private String imdbId;
     private String tmdbId;
-    private String factor;
-    private long timestamp;
-    private String version;
-
-    public String getFactor() {
-        return factor;
-    }
-
-    public void setFactor(final String factor) {
-        this.factor = factor;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(final String version) {
-        this.version = version;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(final long timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    private FeatureVector featureVector;
 
     public String getMovieId() {
         return movieId;
@@ -83,6 +60,14 @@ public class Movie {
 
     public void setTmdbId(final String tmdbId) {
         this.tmdbId = tmdbId;
+    }
+
+    public FeatureVector getFeatureVector() {
+        return featureVector;
+    }
+
+    public void setFeatureVector(final FeatureVector featureVector) {
+        this.featureVector = featureVector;
     }
 
     public boolean anyNull() {
