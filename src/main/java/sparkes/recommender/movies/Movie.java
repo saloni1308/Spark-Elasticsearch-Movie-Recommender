@@ -58,13 +58,13 @@ public class Movie {
         this.tmdbId = tmdbId;
     }
 
-/*    public FeatureVector getFeatureVector() {
+    public FeatureVector getFeatureVector() {
         return featureVector;
     }
 
     public void setFeatureVector(final FeatureVector featureVector) {
         this.featureVector = featureVector;
-    }*/
+    }
 
     public boolean anyNull() {
         if (movieId == null || title == null || genres == null) {
