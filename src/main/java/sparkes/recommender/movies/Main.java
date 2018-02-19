@@ -148,7 +148,7 @@ public class Main implements Serializable {
         // create mapping
         driver.createIndex("i_movies", "movies_mapping.json");
         driver.createIndex("i_rating", "rating_mapping.json");
-        driver.createIndex("i_user", "users_mapping.json");
+        // driver.createIndex("i_user", "users_mapping.json");// not required at this point
 
         driver.importData2Spark();
 
@@ -176,10 +176,10 @@ public class Main implements Serializable {
         driver.transformMovieData();
 
         // save data to ES
-        System.out.println(driver.movieJoin.toJavaRDD().first().getFeatureVector().getFeatureVector().get("@model").factor);
+        //  System.out.println(driver.movieJoin.toJavaRDD().first().getFeatureVector().getFeatureVector().get("@model").factor);
         driver.save2ES("i_movies", "movies", driver.movieJoin.toJavaRDD());
         driver.save2ES("i_rating", "ratings", driver.ratings_filter.toJavaRDD());
-        driver.save2ES("i_user", "users", driver.user_features);
+        // driver.save2ES("i_user", "users", driver.user_features); // not required at this point
 
     }
 
