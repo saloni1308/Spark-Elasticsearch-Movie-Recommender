@@ -1,5 +1,9 @@
 package sparkes.recommender.movies;
 
+import org.apache.hadoop.io.BytesWritable;
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.entity.ContentType;
@@ -9,12 +13,16 @@ import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.mllib.recommendation.Rating;
+import org.apache.spark.serializer.KryoSerializer;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.Row;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.spark.rdd.api.java.JavaEsSpark;
+
+import scala.Array;
 import scala.Tuple2;
+import scala.collection.immutable.Seq;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -23,7 +31,9 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Map;
 
-public class Main implements Serializable {
+import com.esotericsoftware.kryo.KryoSerializable;
+
+public class Main {
     private final static String RESOURCES_PATH = ".\\resources\\";
     static SparkConf conf;
     static JavaSparkContext jsc;
@@ -40,13 +50,16 @@ public class Main implements Serializable {
     Dataset<Row> movies_filter;
     Dataset<MovieRating> ratings_filter;
     Dataset<Movie> movieJoin;
+    Dataset<SubSetMovie> subset;
     JavaRDD<FeatureVector> features_vector;
     JavaRDD<AlsModel> user_features;
 
 
     public void initializeSession() {
         //spark
-        conf = new SparkConf().setAppName("Movie Recommender").setMaster("local[*]");
+        conf = new SparkConf().setAppName("Movie Recommender").setMaster("local[*]")
+            .set("spark.serializer", KryoSerializer.class.getName())
+            .set("spark.kryo.registrator", "sparkes.recommender.movies.I_KryoRegistrator");
         sc = new SparkContext(conf);
         jsc = JavaSparkContext.fromSparkContext(sc);
         sparkSession = new SparkSession(sc);
@@ -84,7 +97,9 @@ public class Main implements Serializable {
         Encoder<FeatureVector> featureEncoder = Encoders.bean(FeatureVector.class);
         Dataset<FeatureVector> featureData = sparkSession.createDataset(features_vector.rdd(), featureEncoder);
         Encoder<Movie> movieEncoder = Encoders.bean(Movie.class);
-        movieJoin = movies_filter.join(links, "movieId").join(featureData, "movieId").as(movieEncoder);
+        Encoder<SubSetMovie> subSetMovieEncoder = Encoders.bean(SubSetMovie.class);
+        subset = movies_filter.join(links, "movieId").as(subSetMovieEncoder);
+        movieJoin = subset.join(featureData, "movieId").as(movieEncoder);
     }
 
     private void createIndex(String indexName, String indexMappingJson) {

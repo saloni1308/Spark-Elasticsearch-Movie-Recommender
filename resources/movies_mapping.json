@@ -13,9 +13,6 @@
   "mappings": {
     "movies": {
       "properties": {
-        "title": {
-          "type": "String"
-        },
         "movieId": {
           "type": "integer"
         },

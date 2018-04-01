@@ -5,7 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class Movie implements Serializable {
+import javax.annotation.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
+public class Movie {
 
     private String movieId;
     private String title;
@@ -13,7 +19,7 @@ public class Movie implements Serializable {
     private List<String> genres_list;
     private String imdbId;
     private String tmdbId;
-    transient Map<String, AlsModel> featureVector;
+    transient Map<String, AlsModel> featureVector = null;
 
     public String getMovieId() {
         return movieId;
@@ -48,7 +54,7 @@ public class Movie implements Serializable {
         return imdbId;
     }
 
-    public void setImdbId(final String imdbId) {
+    public void setImdbId(@Nullable final String imdbId) {
         this.imdbId = imdbId;
     }
 
@@ -56,7 +62,7 @@ public class Movie implements Serializable {
         return tmdbId;
     }
 
-    public void setTmdbId(final String tmdbId) {
+    public void setTmdbId(@Nullable final String tmdbId) {
         this.tmdbId = tmdbId;
     }
 
@@ -64,6 +70,7 @@ public class Movie implements Serializable {
         return featureVector;
     }
 
+    @shaded.parquet.org.codehaus.jackson.annotate.JsonIgnore
     public void setFeatureVector(final Map<String, AlsModel>  featureVector) {
         this.featureVector = featureVector;
     }

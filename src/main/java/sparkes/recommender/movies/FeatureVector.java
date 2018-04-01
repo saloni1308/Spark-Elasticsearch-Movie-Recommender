@@ -3,7 +3,7 @@ package sparkes.recommender.movies;
 import java.io.Serializable;
 import java.util.Map;
 
-public class FeatureVector implements Serializable {
+public class FeatureVector {
   String movieId;
   Map<String, AlsModel> featureVector;
 
@@ -22,4 +22,5 @@ public class FeatureVector implements Serializable {
   public void setFeatureVector(final Map<String, AlsModel> featureVector) {
     this.featureVector = featureVector;
   }
+
 }

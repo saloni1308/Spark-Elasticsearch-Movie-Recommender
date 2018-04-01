@@ -2,7 +2,7 @@ package sparkes.recommender.movies;
 
 import java.io.Serializable;
 
-public class AlsModel implements Serializable {
+public class AlsModel {
     String factor;
     String version;
     long timestamp;
