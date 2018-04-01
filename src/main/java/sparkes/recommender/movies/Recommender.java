@@ -43,7 +43,7 @@ public class Recommender implements Serializable {
         alsModel.setFactor(Arrays.toString(model._2()).replace(",", "|").replace("[", "").replace("]", ""));
         feactureVector.setMovieId(model._1().toString());
         Map<String, AlsModel> vector = new HashMap<>();
-        vector.put("@model", alsModel);
+        vector.put("@model_factor", alsModel);
         feactureVector.setFeatureVector(vector);
         return feactureVector;
     }

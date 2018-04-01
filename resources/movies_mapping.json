@@ -13,6 +13,9 @@
   "mappings": {
     "movies": {
       "properties": {
+        "title": {
+          "type": "String"
+        },
         "movieId": {
           "type": "integer"
         },
@@ -29,7 +32,7 @@
           "type": "date",
           "format": "year"
         },
-        "@model": {
+        "@model_factor": {
           "properties": {
             "factor": {
               "type": "text",

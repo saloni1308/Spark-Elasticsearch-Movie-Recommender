@@ -1,9 +1,11 @@
 package sparkes.recommender.movies;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
-public class Movie {
+public class Movie implements Serializable {
 
     private String movieId;
     private String title;
@@ -11,7 +13,7 @@ public class Movie {
     private List<String> genres_list;
     private String imdbId;
     private String tmdbId;
-    private FeatureVector featureVector;
+    transient Map<String, AlsModel> featureVector;
 
     public String getMovieId() {
         return movieId;
@@ -58,11 +60,11 @@ public class Movie {
         this.tmdbId = tmdbId;
     }
 
-    public FeatureVector getFeatureVector() {
+    public Map<String, AlsModel>  getFeatureVector() {
         return featureVector;
     }
 
-    public void setFeatureVector(final FeatureVector featureVector) {
+    public void setFeatureVector(final Map<String, AlsModel>  featureVector) {
         this.featureVector = featureVector;
     }
 
