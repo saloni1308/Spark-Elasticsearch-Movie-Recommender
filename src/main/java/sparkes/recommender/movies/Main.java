@@ -15,6 +15,7 @@ import org.elasticsearch.client.Response;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.spark.rdd.api.java.JavaEsSpark;
 import scala.Tuple2;
+import sparkes.recommender.movies.AwsConnection.AwsMain;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -52,7 +53,7 @@ public class Main implements Serializable {
         sparkSession = new SparkSession(sc);
 
         //elasticsearch
-        client = RestClient.builder(new HttpHost("localhost", 9200, "http")).build();
+        client = AwsMain.esClient("es", "ap-south-1");
     }
 
     private void importData2Spark() {
@@ -94,7 +95,7 @@ public class Main implements Serializable {
 
             HttpEntity entity = new NStringEntity(indexMapping, ContentType.APPLICATION_JSON);
 
-            Response response = createIndexES(client, indexName, entity);
+            Response response = createIndexES(client, "/"+ indexName, entity);
 
 
         }
